@@ -1,0 +1,23 @@
+# Python 3.12. The versions are the ones the published numbers were built with.
+
+# data, forecasts, Power BI project
+numpy==2.5.3
+pandas==3.0.6
+scipy==1.18.1
+statsmodels==0.15.0
+openpyxl==3.1.5
+
+# AI gateway (Windows: it reads the model Power BI Desktop has open)
+fastapi==0.162.0
+uvicorn==0.54.0
+httpx==0.28.1
+pydantic==2.14.2
+pythonnet==3.2.1
+
+# MCP server and the token benchmark
+mcp==2.3.0
+tiktoken==0.14.0
+
+# design assets (page backgrounds, logos)
+playwright==1.64.1
+pillow==12.3.0

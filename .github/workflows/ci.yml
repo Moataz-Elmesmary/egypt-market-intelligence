@@ -1,0 +1,72 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  data:
+    name: Data, forecasts and routing evals
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-ci.txt
+      - run: pip install -r requirements-ci.txt
+      - name: Rebuild 18 tables and the 6-model backtested forecast
+        run: python build_egypt_data.py
+      - name: Routing evals (42 questions, English and Egyptian Arabic, traps included)
+        working-directory: backend
+        run: python evals.py
+      - name: The README numbers still match the code
+        run: python tools/metrics.py --check
+
+  visual:
+    name: Custom visual (.pbiviz)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: visual
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: visual/package-lock.json
+      - run: npm ci
+      - name: Lint, compile and package
+        run: npx pbiviz package --no-stats
+      - uses: actions/upload-artifact@v4
+        with:
+          name: egypt-market-visual
+          path: visual/dist/*.pbiviz
+          if-no-files-found: error
+
+  pbip:
+    name: Power BI project is generated from code
+    needs: visual
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/download-artifact@v4
+        with:
+          name: egypt-market-visual
+          path: dist
+      - name: Regenerate TMDL + PBIR and compare with the committed pbip/
+        run: |
+          python build_pbip.py dist/*.pbiviz /tmp/pbip \
+            --data-url https://raw.githubusercontent.com/${{ github.repository }}/main/data/Egypt_Market_Intelligence_2026.xlsx
+          diff -r --exclude=CustomVisuals pbip /tmp/pbip
+          echo "pbip/ matches build_pbip.py"

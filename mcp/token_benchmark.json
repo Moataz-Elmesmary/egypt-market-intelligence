@@ -1,0 +1,51 @@
+{
+ "naive_context_tokens": 32190,
+ "catalog_tokens": 682,
+ "tools": 7,
+ "avg_mcp_tokens": 848,
+ "saving_pct": 97.4,
+ "questions": [
+  {
+   "q": "Where does Coca-Cola beat its average?",
+   "tool": "search_share",
+   "naive": 32198,
+   "mcp": 767,
+   "result_tokens": 58
+  },
+  {
+   "q": "مين أكتر تطبيق توصيل بيدوّروا عليه في القاهرة؟",
+   "tool": "search_share",
+   "naive": 32226,
+   "mcp": 798,
+   "result_tokens": 60
+  },
+  {
+   "q": "Edita revenue in dollars since 2022",
+   "tool": "company_financials",
+   "naive": 32199,
+   "mcp": 809,
+   "result_tokens": 99
+  },
+  {
+   "q": "مين بيكبر ومين بيتراجع في تطبيقات التوصيل؟",
+   "tool": "search_trend",
+   "naive": 32221,
+   "mcp": 1024,
+   "result_tokens": 264
+  },
+  {
+   "q": "Using the forecast trend, which listed food maker grows fastest in 2027?",
+   "tool": "forecast",
+   "naive": 32206,
+   "mcp": 824,
+   "result_tokens": 115
+  },
+  {
+   "q": "المشروبات بتتباع فين أكتر؟",
+   "tool": "where_sold",
+   "naive": 32210,
+   "mcp": 869,
+   "result_tokens": 154
+  }
+ ]
+}

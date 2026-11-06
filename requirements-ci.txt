@@ -1,0 +1,6 @@
+# What CI needs: the data build, the forecasts and the routing evals (no Power BI, no API key).
+numpy==2.5.3
+pandas==3.0.6
+scipy==1.18.1
+statsmodels==0.15.0
+openpyxl==3.1.5

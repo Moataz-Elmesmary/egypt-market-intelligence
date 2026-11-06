@@ -1,0 +1,23 @@
+# secrets and local state
+.env
+backend/*.db
+__pycache__/
+*.pyc
+.venv/
+
+# build outputs (the .pbiviz ships in Releases)
+dist/
+pbip-local/
+visual/node_modules/
+visual/.tmp/
+visual/dist/
+visual/webpack.statistics.*.html
+
+# Power BI Desktop's local files inside a PBIP
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+
+# the walkthrough video lives on YouTube
+video/
+*.mp4
+*.mkv

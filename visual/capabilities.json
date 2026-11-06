@@ -1,0 +1,140 @@
+{
+    "dataRoles": [
+        {
+            "displayName": "Fields",
+            "name": "fields",
+            "kind": "Grouping"
+        },
+        {
+            "displayName": "Values",
+            "name": "values",
+            "kind": "Measure"
+        },
+        {
+            "displayName": "Tooltips",
+            "name": "tooltips",
+            "kind": "Measure"
+        }
+    ],
+    "objects": {
+        "settings": {
+            "properties": {
+                "mode": {
+                    "type": {
+                        "enumeration": [
+                            {
+                                "value": "page",
+                                "displayName": "Full page"
+                            },
+                            {
+                                "value": "header",
+                                "displayName": "Header"
+                            },
+                            {
+                                "value": "kpis",
+                                "displayName": "KPI tiles"
+                            },
+                            {
+                                "value": "carousel",
+                                "displayName": "Product carousel"
+                            },
+                            {
+                                "value": "trend",
+                                "displayName": "Trend"
+                            },
+                            {
+                                "value": "map",
+                                "displayName": "Governorate map"
+                            },
+                            {
+                                "value": "forecast",
+                                "displayName": "Forecast"
+                            },
+                            {
+                                "value": "insights",
+                                "displayName": "Insight cards"
+                            },
+                            {
+                                "value": "notes",
+                                "displayName": "Numbered notes"
+                            },
+                            {
+                                "value": "ai",
+                                "displayName": "Ask AI"
+                            }
+                        ]
+                    }
+                },
+                "page": {
+                    "type": {
+                        "text": true
+                    }
+                },
+                "title": {
+                    "type": {
+                        "text": true
+                    }
+                },
+                "subtitle": {
+                    "type": {
+                        "text": true
+                    }
+                }
+            }
+        }
+    },
+    "dataViewMappings": [
+        {
+            "table": {
+                "rows": {
+                    "select": [
+                        {
+                            "for": {
+                                "in": "fields"
+                            }
+                        },
+                        {
+                            "for": {
+                                "in": "values"
+                            }
+                        },
+                        {
+                            "for": {
+                                "in": "tooltips"
+                            }
+                        }
+                    ],
+                    "dataReductionAlgorithm": {
+                        "top": {
+                            "count": 30000
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "supportsMultiVisualSelection": true,
+    "suppressDefaultTitle": true,
+    "supportsKeyboardFocus": true,
+    "privileges": [
+        {
+            "name": "WebAccess",
+            "essential": true,
+            "parameters": [
+                "http://localhost:8765",
+                "http://127.0.0.1:8765"
+            ]
+        }
+    ],
+    "tooltips": {
+        "supportedTypes": {
+            "default": true,
+            "canvas": true
+        },
+        "roles": [
+            "tooltips"
+        ]
+    },
+    "supportsLandingPage": true,
+    "supportsEmptyDataView": true
+}
