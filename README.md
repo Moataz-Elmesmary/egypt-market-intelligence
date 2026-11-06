@@ -35,7 +35,7 @@
 
 ## ▶ The full build, in 10 minutes
 
-<a href="https://youtu.be/_iYsbsh9m6o"><img src="docs/media/video-poster.png" width="100%" alt="Watch: AI inside Power BI, the full build (10:44)"></a>
+<a href="https://youtu.be/_iYsbsh9m6o"><img src="docs/media/video-poster.gif" width="100%" alt="Watch: AI inside Power BI, the full build (10:44)"></a>
 
 **[Watch it on YouTube →](https://youtu.be/_iYsbsh9m6o)**  
 From an empty folder to a report that answers in English or Arabic: the data and the forecasts, the semantic model as code, the custom visual, Power BI Desktop, the AI gateway, the audit log and the tests. The written version is [docs/BUILD_GUIDE.md](docs/BUILD_GUIDE.md).
