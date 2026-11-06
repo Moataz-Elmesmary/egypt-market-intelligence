@@ -1,0 +1,55 @@
+{
+  "tables": 18,
+  "rows": 4520,
+  "search_leaders": {
+    "Soft drinks": "Pepsi 64.7%",
+    "Delivery apps": "talabat 76.1%"
+  },
+  "forecast": {
+    "Juhayna": {
+      "ensemble_mape": 5.0,
+      "mase": 0.29,
+      "band_80": "15 of 20",
+      "egp_2027_bn": 48.3,
+      "growth_2027_pct": 27.9,
+      "real_growth_2027_pct": 12.2
+    },
+    "Obour Land": {
+      "ensemble_mape": 6.2,
+      "mase": 0.3,
+      "band_80": "15 of 20",
+      "egp_2027_bn": 14.8,
+      "growth_2027_pct": 12.2,
+      "real_growth_2027_pct": -1.5
+    },
+    "Edita": {
+      "ensemble_mape": 6.7,
+      "mase": 0.43,
+      "band_80": "15 of 20",
+      "egp_2027_bn": 34.5,
+      "growth_2027_pct": 27.9,
+      "real_growth_2027_pct": 12.4
+    },
+    "Domty": {
+      "ensemble_mape": 13.3,
+      "mase": 0.87,
+      "band_80": "13 of 20",
+      "egp_2027_bn": 11.3,
+      "growth_2027_pct": 4.1,
+      "real_growth_2027_pct": -8.6
+    }
+  },
+  "best_ensemble_mape": "5.0%",
+  "routing": "42/42",
+  "measures": 78,
+  "relationships": 8,
+  "pages": 5,
+  "mcp_tools": 7,
+  "token_saving": "97.4%",
+  "live": {
+    "evals": "42/42",
+    "conversations": "3/3",
+    "model": "gemini-3.5-flash",
+    "date": "2026-11-06"
+  }
+}

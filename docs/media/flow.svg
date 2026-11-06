@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 560" width="1280" height="560" role="img" aria-label="How a question travels: the Power BI custom visual sends it to the AI gateway (scope gate, cache, instant router, Gemini with 7 tools, guard, trace log); tools run fixed DAX against the semantic model; an MCP server exposes the same tools to any agent">
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#87918E"/>
+    </marker>
+    <linearGradient id="gw" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#13312F"/>
+      <stop offset="1" stop-color="#0F4A45"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F6CF7A"/>
+      <stop offset="1" stop-color="#D08A1E"/>
+    </linearGradient>
+    <filter id="sh" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#1C2928" flood-opacity=".08"/>
+    </filter>
+  </defs>
+  <style>
+    .f{font-family:'Segoe UI','Inter','Helvetica Neue',Helvetica,Arial,sans-serif}
+    .mono{font-family:'Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace}
+    .ink{fill:#1C2928}.ink2{fill:#4F5F5C}.mut{fill:#87918E}
+    .card{fill:#FFFFFF;stroke:#E8E1D4}
+    .tile{fill:#FFFFFF;fill-opacity:.06;stroke:#FFFFFF;stroke-opacity:.12}
+    .hl{fill:none;stroke:#F6CF7A;stroke-width:2.2;opacity:0;animation:hl 8s linear infinite}
+    .s1{animation-delay:.7s}.s2{animation-delay:1.3s}.s3{animation-delay:1.9s}.s4{animation-delay:2.5s}.s5{animation-delay:4.7s}.s6{animation-delay:5.3s}
+    @keyframes hl{0%{opacity:0}2%{opacity:1}12%{opacity:1}17%{opacity:0}100%{opacity:0}}
+    .wire{stroke:#C9BFAE;stroke-width:2;fill:none}
+    .lbl{font-size:11px;font-weight:700;letter-spacing:.6px}
+  </style>
+
+  <rect x=".5" y=".5" width="1279" height="559" rx="22" fill="#F5F0E7" stroke="#E8E1D4"/>
+  <text x="40" y="50" class="f ink" font-size="21" font-weight="800">How a question travels</text>
+  <text x="40" y="74" class="f ink2" font-size="14">The language model may ask for data. It never fetches it, and it never sees a table.</text>
+
+  <!-- column A: Power BI report and MCP clients -->
+  <g filter="url(#sh)">
+    <rect x="40" y="110" width="230" height="250" rx="14" class="card"/>
+    <rect x="40" y="400" width="230" height="110" rx="14" class="card"/>
+  </g>
+  <g transform="translate(60 130)">
+    <rect width="7" height="22" y="8" rx="2" fill="#C2922F"/><rect x="10" width="7" height="30" rx="2" fill="#E0B356"/><rect x="20" y="14" width="7" height="16" rx="2" fill="#0B6E69"/>
+  </g>
+  <text x="98" y="154" class="f ink" font-size="16" font-weight="800">Power BI report</text>
+  <g class="f" font-size="13">
+    <text x="60" y="196" class="ink" font-weight="700">Ask AI custom visual</text>
+    <text x="60" y="215" class="ink2">TypeScript + D3, one .pbiviz</text>
+    <text x="60" y="246" class="ink" font-weight="700">5 report pages</text>
+    <text x="60" y="265" class="ink2">slicers, bookmarks, drill</text>
+    <text x="60" y="296" class="ink" font-weight="700">Arabic or English</text>
+    <text x="60" y="315" class="ink2">chat history per conversation</text>
+  </g>
+  <text x="60" y="436" class="f ink" font-size="16" font-weight="800">Any MCP client</text>
+  <text x="60" y="460" class="f ink2" font-size="13">VS Code, Cursor, agents</text>
+  <text x="60" y="480" class="f ink2" font-size="13">or your own agent</text>
+
+  <!-- column B: the gateway -->
+  <rect x="330" y="110" width="570" height="250" rx="16" fill="url(#gw)" filter="url(#sh)"/>
+  <text x="352" y="140" class="f" font-size="15" font-weight="800" fill="#FFFFFF">AI gateway</text>
+  <text x="446" y="140" class="mono" font-size="12" fill="#7FD1C8">FastAPI · localhost:8765</text>
+  <g class="f">
+    <!-- row 1 -->
+    <rect x="350" y="158" width="170" height="88" rx="10" class="tile"/><rect x="350" y="158" width="170" height="88" rx="10" class="hl s1"/>
+    <rect x="530" y="158" width="170" height="88" rx="10" class="tile"/><rect x="530" y="158" width="170" height="88" rx="10" class="hl s2"/>
+    <rect x="710" y="158" width="170" height="88" rx="10" class="tile"/><rect x="710" y="158" width="170" height="88" rx="10" class="hl s3"/>
+    <!-- row 2 -->
+    <rect x="350" y="256" width="170" height="88" rx="10" class="tile"/><rect x="350" y="256" width="170" height="88" rx="10" class="hl s4"/>
+    <rect x="530" y="256" width="170" height="88" rx="10" class="tile"/><rect x="530" y="256" width="170" height="88" rx="10" class="hl s5"/>
+    <rect x="710" y="256" width="170" height="88" rx="10" class="tile"/><rect x="710" y="256" width="170" height="88" rx="10" class="hl s6"/>
+
+    <g font-size="13.5" font-weight="800" fill="#FFFFFF">
+      <text x="366" y="184"><tspan fill="#F6CF7A">1 </tspan>Scope gate</text>
+      <text x="546" y="184"><tspan fill="#F6CF7A">2 </tspan>Cache</text>
+      <text x="726" y="184"><tspan fill="#F6CF7A">3 </tspan>Instant router</text>
+      <text x="366" y="282"><tspan fill="#F6CF7A">4 </tspan>Gemini + 7 tools</text>
+      <text x="546" y="282"><tspan fill="#F6CF7A">5 </tspan>Guard</text>
+      <text x="726" y="282"><tspan fill="#F6CF7A">6 </tspan>Trace log</text>
+    </g>
+    <g font-size="11.5" fill="#D5E6E3">
+      <text x="366" y="206">off-topic, unsafe or</text><text x="366" y="222">unknown brand: refused,</text><text x="366" y="238">no AI call</text>
+      <text x="546" y="206">same question today</text><text x="546" y="222">costs 0 tokens</text>
+      <text x="726" y="206">known question shapes,</text><text x="726" y="222">confidence ≥ 0.8:</text><text x="726" y="238">answered in code</text>
+      <text x="366" y="304">function calling: sees</text><text x="366" y="320">declarations, never</text><text x="366" y="336">the tables</text>
+      <text x="546" y="304">every figure must</text><text x="546" y="320">match a returned row</text>
+      <text x="726" y="304">route, tokens, ms and</text><text x="726" y="320">the exact DAX of</text><text x="726" y="336">every call</text>
+    </g>
+  </g>
+
+  <!-- MCP server -->
+  <rect x="330" y="400" width="570" height="110" rx="14" class="card" filter="url(#sh)"/>
+  <text x="352" y="434" class="f ink" font-size="16" font-weight="800">MCP server</text>
+  <text x="352" y="458" class="f ink2" font-size="13">The same 7 tools over stdio, so any agent gets the numbers the report shows.</text>
+  <text x="352" y="484" class="mono" font-size="12" fill="#0B6E69">python mcp/egypt_mcp.py</text>
+
+  <!-- column C: semantic model and data -->
+  <rect x="960" y="110" width="280" height="250" rx="14" class="card" filter="url(#sh)"/>
+  <g transform="translate(980 128)">
+    <path d="M14 0 C6 0 0 3 0 7 V27 C0 31 6 34 14 34 C22 34 28 31 28 27 V7 C28 3 22 0 14 0 Z" fill="#0B6E69"/>
+    <ellipse cx="14" cy="7" rx="14" ry="7" fill="#12958B"/>
+  </g>
+  <text x="1020" y="154" class="f ink" font-size="16" font-weight="800">Semantic model</text>
+  <g class="f" font-size="13">
+    <text x="980" y="196" class="ink" font-weight="700">Power BI Desktop</text>
+    <text x="980" y="215" class="ink2">local Analysis Services engine</text>
+    <text x="980" y="246" class="ink" font-weight="700">18 tables · 78 measures</text>
+    <text x="980" y="265" class="ink2">8 relationships</text>
+    <text x="980" y="296" class="ink" font-weight="700">Written as code</text>
+    <text x="980" y="315" class="ink2">TMDL + PBIR from build_pbip.py</text>
+  </g>
+  <rect x="960" y="400" width="280" height="110" rx="14" class="card" filter="url(#sh)"/>
+  <text x="980" y="434" class="f ink" font-size="16" font-weight="800">Public data, rebuilt by code</text>
+  <text x="980" y="458" class="f ink2" font-size="13">EGX filings, Google Trends, CAPMAS</text>
+  <text x="980" y="480" class="f ink2" font-size="13">+ a 6-model backtested forecast</text>
+
+  <!-- wires -->
+  <path d="M270 180 H326" class="wire" marker-end="url(#ah)"/>
+  <path d="M330 300 H274" class="wire" marker-end="url(#ah)"/>
+  <path d="M900 190 H956" class="wire" marker-end="url(#ah)"/>
+  <path d="M960 290 H904" class="wire" marker-end="url(#ah)"/>
+  <path d="M270 455 H326" class="wire" marker-end="url(#ah)"/>
+  <path d="M900 440 H930 V330 H956" class="wire" marker-end="url(#ah)"/>
+  <path d="M1100 400 V364" class="wire" marker-end="url(#ah)"/>
+  <path d="M615 360 V396" class="wire" stroke-dasharray="4 5"/>
+
+  <g class="f lbl" fill="#87918E">
+    <text x="275" y="172">ASK</text>
+    <text x="275" y="318">ANSWER</text>
+    <text x="905" y="182">DAX</text>
+    <text x="912" y="308">ROWS</text>
+    <text x="275" y="447">TOOLS</text>
+    <text x="1108" y="386">REFRESH</text>
+    <text x="623" y="383">SAME TOOLS</text>
+  </g>
+
+  <!-- packets: one question, end to end, every 8 s -->
+  <g>
+    <circle r="6" fill="#0B6E69">
+      <animateMotion dur="8s" repeatCount="indefinite" path="M270 180 H330" keyPoints="0;0;1;1" keyTimes="0;0.01;0.08;1" calcMode="linear"/>
+      <animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;1;1;0;0" keyTimes="0;0.01;0.08;0.09;1"/>
+    </circle>
+    <circle r="6" fill="url(#gold)">
+      <animateMotion dur="8s" repeatCount="indefinite" path="M900 190 H960" keyPoints="0;0;1;1" keyTimes="0;0.40;0.47;1" calcMode="linear"/>
+      <animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.40;0.41;0.47;0.48;1"/>
+    </circle>
+    <circle r="6" fill="#0B6E69">
+      <animateMotion dur="8s" repeatCount="indefinite" path="M960 290 H900" keyPoints="0;0;1;1" keyTimes="0;0.50;0.57;1" calcMode="linear"/>
+      <animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.50;0.51;0.57;0.58;1"/>
+    </circle>
+    <circle r="6" fill="#0B6E69">
+      <animateMotion dur="8s" repeatCount="indefinite" path="M330 300 H270" keyPoints="0;0;1;1" keyTimes="0;0.82;0.89;1" calcMode="linear"/>
+      <animate attributeName="opacity" dur="8s" repeatCount="indefinite" values="0;0;1;1;0;0" keyTimes="0;0.82;0.83;0.89;0.90;1"/>
+    </circle>
+    <circle r="5" fill="#C2922F">
+      <animateMotion dur="5s" repeatCount="indefinite" path="M270 455 H330 M900 440 H930 V330 H960" calcMode="paced"/>
+    </circle>
+  </g>
+
+  <!-- footer -->
+  <text x="40" y="540" class="f mut" font-size="12">Seven tools, each a fixed DAX query with checked arguments: search_share · search_trend · company_financials · forecast · get_kpis · where_sold · sources</text>
+</svg>

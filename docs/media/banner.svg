@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 400" width="1280" height="400" role="img" aria-label="Egypt Market Intelligence: a Power BI report you can ask in Arabic or English, with every number traced to a DAX query">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0E2826"/>
+      <stop offset=".55" stop-color="#13312F"/>
+      <stop offset="1" stop-color="#0B4A46"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#FFFFFF" stroke-opacity=".05"/>
+    </pattern>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F6CF7A"/>
+      <stop offset="1" stop-color="#D08A1E"/>
+    </linearGradient>
+    <linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2BB3A6" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#2BB3A6" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="halo" cx=".78" cy=".35" r=".55">
+      <stop offset="0" stop-color="#2BB3A6" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#2BB3A6" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="frame"><rect width="1280" height="400" rx="22"/></clipPath>
+  </defs>
+  <style>
+    .f{font-family:'Segoe UI','Inter','Helvetica Neue',Helvetica,Arial,sans-serif}
+    .ar{font-family:'Segoe UI','Noto Naskh Arabic','Geeza Pro',Tahoma,Arial,sans-serif}
+    .mono{font-family:'Cascadia Code','SFMono-Regular',Consolas,'Liberation Mono',monospace}
+    .actual{stroke-dasharray:640;stroke-dashoffset:640;animation:draw 10s cubic-bezier(.3,.6,.3,1) infinite}
+    .area{opacity:0;animation:fadeA 10s ease infinite}
+    .fc{opacity:0;animation:fadeF 10s ease infinite}
+    .q{opacity:0;animation:q 10s ease infinite}
+    .dots{opacity:0;animation:dots 10s ease infinite}
+    .ans{opacity:0;animation:ans 10s ease infinite}
+    .pulse{transform-origin:1196px 126px;animation:pulse 1.6s ease-out infinite}
+    .tag{opacity:0;animation:tag 16s ease infinite}
+    .t2{animation-delay:4s}.t3{animation-delay:8s}.t4{animation-delay:12s}
+    .blink{animation:blink 1s steps(2) infinite}
+    @keyframes draw{0%{stroke-dashoffset:640}24%,100%{stroke-dashoffset:0}}
+    @keyframes fadeA{0%,18%{opacity:0}30%,100%{opacity:1}}
+    @keyframes fadeF{0%,26%{opacity:0}36%,100%{opacity:1}}
+    @keyframes q{0%,36%{opacity:0;transform:translateY(8px)}42%,100%{opacity:1;transform:none}}
+    @keyframes dots{0%,44%{opacity:0}47%,55%{opacity:1}58%,100%{opacity:0}}
+    @keyframes ans{0%,56%{opacity:0;transform:translateY(10px)}63%,100%{opacity:1;transform:none}}
+    @keyframes pulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(3.2);opacity:0}}
+    @keyframes tag{0%{opacity:0;transform:translateY(6px)}5%,22%{opacity:1;transform:none}27%,100%{opacity:0;transform:translateY(-6px)}}
+    @keyframes blink{0%{opacity:1}50%{opacity:0}}
+  </style>
+
+  <g clip-path="url(#frame)">
+    <rect width="1280" height="400" fill="url(#bg)"/>
+    <rect width="1280" height="400" fill="url(#grid)"/>
+    <rect width="1280" height="400" fill="url(#halo)"/>
+
+    <!-- brand -->
+    <g transform="translate(64 52)">
+      <path d="M20 1 L39 35 H1 Z" fill="url(#gold)"/>
+      <path d="M20 1 L39 35 H24 Z" fill="#000" opacity=".16"/>
+      <path d="M9.5 21 H30.5" stroke="#13312F" stroke-width="2.2"/>
+      <path d="M5 29 H35" stroke="#13312F" stroke-width="2.2"/>
+    </g>
+    <text x="118" y="76" class="f" font-size="13" font-weight="700" letter-spacing="3.2" fill="#E0B356">POWER BI  ·  CUSTOM VISUAL  ·  AI GATEWAY  ·  MCP</text>
+
+    <text x="62" y="146" class="f" font-size="54" font-weight="800" fill="#FFFFFF" letter-spacing="-.5">Egypt Market Intelligence</text>
+    <text x="64" y="188" class="f" font-size="22" fill="#E8E1D4">A Power BI report you can ask, in Arabic or English.</text>
+    <text x="64" y="224" class="ar" font-size="21" fill="#E0B356" direction="rtl" unicode-bidi="embed" text-anchor="end">اسأل التقرير بالعربي، وكل رقم ليه مصدر</text>
+
+    <!-- rotating tagline -->
+    <g class="f" font-size="18" fill="#7FD1C8">
+      <text x="64" y="270" class="tag t1">›  Every number in an answer comes from a DAX query</text>
+      <text x="64" y="270" class="tag t2">›  The whole report is code: PBIP, TMDL and PBIR</text>
+      <text x="64" y="270" class="tag t3">›  Six forecasting models, backtested on unseen quarters</text>
+      <text x="64" y="270" class="tag t4">›  The same seven tools, served to any agent over MCP</text>
+    </g>
+
+    <!-- stat chips -->
+    <g class="f" font-size="14" font-weight="600">
+      <rect x="64" y="310" width="122" height="34" rx="17" fill="#FFFFFF" fill-opacity=".08" stroke="#FFFFFF" stroke-opacity=".14"/>
+      <text x="125" y="332" text-anchor="middle" fill="#F5F0E7">18 tables</text>
+      <rect x="196" y="310" width="140" height="34" rx="17" fill="#FFFFFF" fill-opacity=".08" stroke="#FFFFFF" stroke-opacity=".14"/>
+      <text x="266" y="332" text-anchor="middle" fill="#F5F0E7">78 measures</text>
+      <rect x="346" y="310" width="150" height="34" rx="17" fill="#FFFFFF" fill-opacity=".08" stroke="#FFFFFF" stroke-opacity=".14"/>
+      <text x="421" y="332" text-anchor="middle" fill="#F5F0E7">42 / 42 evals</text>
+      <rect x="506" y="310" width="196" height="34" rx="17" fill="#C2922F" fill-opacity=".18" stroke="#E0B356" stroke-opacity=".5"/>
+      <text x="604" y="332" text-anchor="middle" fill="#F6CF7A">97% fewer tokens</text>
+    </g>
+
+    <!-- chart: actual, forecast and its 80% band -->
+    <g transform="translate(0 30)">
+      <g stroke="#FFFFFF" stroke-opacity=".08">
+        <path d="M780 110H1220M780 170H1220M780 230H1220"/>
+      </g>
+      <path d="M780 290H1220" stroke="#FFFFFF" stroke-opacity=".25"/>
+      <g class="f" font-size="11" fill="#FFFFFF" fill-opacity=".45">
+        <text x="790" y="308">2021</text><text x="1012" y="308" text-anchor="middle">2026</text><text x="1196" y="308" text-anchor="middle">2027</text>
+      </g>
+      <rect x="1012" y="96" width="208" height="194" fill="#C2922F" fill-opacity=".06"/>
+      <path class="area" d="M790 282 L800 280 L810 281 L820 279 L830 276 L840 272 L850 266 L860 262 L870 258 L880 253 L890 248 L900 240 L910 236 L920 228 L930 222 L940 214 L950 210 L960 203 L970 206 L980 198 L990 190 L1000 192 L1012 180 L1012 290 L790 290 Z" fill="url(#area)"/>
+      <path class="actual" d="M790 282 L800 280 L810 281 L820 279 L830 276 L840 272 L850 266 L860 262 L870 258 L880 253 L890 248 L900 240 L910 236 L920 228 L930 222 L940 214 L950 210 L960 203 L970 206 L980 198 L990 190 L1000 192 L1012 180" fill="none" stroke="#5FD0C3" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round"/>
+      <g class="fc">
+        <path d="M1012 180 L1032 170 L1052 160 L1072 150 L1092 150 L1112 132 L1132 120 L1152 110 L1172 110 L1196 90 L1196 128 L1172 152 L1152 152 L1132 158 L1112 166 L1092 182 L1072 178 L1052 180 L1032 184 Z" fill="#E0B356" fill-opacity=".22"/>
+        <path d="M1012 180 L1032 177 L1052 170 L1072 164 L1092 166 L1112 149 L1132 139 L1152 131 L1172 131 L1196 109" fill="none" stroke="#F6CF7A" stroke-width="3" stroke-dasharray="7 6" stroke-linecap="round"/>
+        <text x="1222" y="58" text-anchor="end" class="f" font-size="12" font-weight="600" fill="#F6CF7A">forecast · 80% band</text>
+        <circle cx="1196" cy="109" r="5" fill="#F6CF7A"/>
+      </g>
+    </g>
+    <g class="fc"><circle cx="1196" cy="139" r="5" fill="#F6CF7A" fill-opacity=".8" class="pulse" style="transform-origin:1196px 139px"/></g>
+
+    <!-- the question, in Egyptian Arabic -->
+    <g class="q">
+      <rect x="822" y="46" width="236" height="40" rx="20" fill="#0B6E69" stroke="#5FD0C3" stroke-opacity=".5"/>
+      <text x="1042" y="72" class="ar" font-size="17" font-weight="600" fill="#FFFFFF" direction="rtl" unicode-bidi="embed" text-anchor="start">إيديتا هتعمل كام في 2027؟</text>
+    </g>
+    <g class="dots" fill="#FFFFFF">
+      <rect x="796" y="100" width="70" height="30" rx="15" fill="#FFFFFF" fill-opacity=".12"/>
+      <circle cx="816" cy="115" r="4"/><circle cx="831" cy="115" r="4" fill-opacity=".7"/><circle cx="846" cy="115" r="4" fill-opacity=".4"/>
+    </g>
+    <!-- the answer card -->
+    <g class="ans">
+      <rect x="780" y="98" width="300" height="112" rx="14" fill="#F5F0E7"/>
+      <text x="798" y="124" class="f" font-size="12" font-weight="700" letter-spacing="1.2" fill="#87918E">EDITA · 2027 FORECAST</text>
+      <text x="798" y="158" class="f" font-size="30" font-weight="800" fill="#0B6E69">EGP 34.5B</text>
+      <rect x="958" y="137" width="110" height="26" rx="13" fill="#0B6E69" fill-opacity=".12"/>
+      <text x="1013" y="155" text-anchor="middle" class="f" font-size="13" font-weight="700" fill="#0B6E69">+27.9% in EGP</text>
+      <text x="798" y="190" class="mono" font-size="12" fill="#4F5F5C">⚡ instant · 0 tokens · read by DAX</text>
+    </g>
+  </g>
+  <rect x=".5" y=".5" width="1279" height="399" rx="22" fill="none" stroke="#FFFFFF" stroke-opacity=".08"/>
+</svg>

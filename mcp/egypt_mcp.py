@@ -1,7 +1,7 @@
 """egypt-market-mcp: the in-report assistant's 7 tools as an MCP server.
 
 The functions are imported from egypt/backend/tools.py, the same code the Power BI assistant runs,
-so an MCP client (Claude Desktop, VS Code, Cursor, any agent) queries the open Power BI model with
+so an MCP client (VS Code, Cursor, any agent) queries the open Power BI model with
 the same DAX. The client's LLM never receives the tables: it calls a tool and gets a few rows back.
 
 Run (stdio):  python egypt/mcp/egypt_mcp.py      (needs the report open in Power BI Desktop)
