@@ -1,6 +1,6 @@
 <div align="center">
 
-<a href="https://youtu.be/_iYsbsh9m6o"><img src="docs/media/banner.svg" width="100%" alt="Egypt Market Intelligence: a Power BI report you can ask in Arabic or English"></a>
+<a href="https://youtu.be/_iYsbsh9m6o"><img src="docs/media/banner.svg" width="100%" alt="Egypt Market Intelligence: a Power BI report you can ask in English or Arabic"></a>
 
 <br>
 
@@ -21,7 +21,7 @@
 ![MCP](https://img.shields.io/badge/MCP-server-1C2928)
 ![statsmodels](https://img.shields.io/badge/statsmodels-6%20models-4F5F5C)
 
-### A Power BI report you can talk to, in Egyptian Arabic or English.<br>Every number in an answer comes from a DAX query you can open and rerun.
+### A Power BI report you can talk to, in English or Arabic.<br>Every number in an answer comes from a DAX query you can open and rerun.
 
 [**▶ Watch the full build**](https://youtu.be/_iYsbsh9m6o) &nbsp;·&nbsp;
 [**See it work**](#-see-it-work) &nbsp;·&nbsp;
@@ -38,7 +38,7 @@
 <a href="https://youtu.be/_iYsbsh9m6o"><img src="docs/media/video-poster.png" width="100%" alt="Watch: AI inside Power BI, the full build (10:44)"></a>
 
 **[Watch it on YouTube →](https://youtu.be/_iYsbsh9m6o)**  
-From an empty folder to a report that answers in Arabic: the data and the forecasts, the semantic model as code, the custom visual, Power BI Desktop, the AI gateway, the audit log and the tests. The written version is [docs/BUILD_GUIDE.md](docs/BUILD_GUIDE.md).
+From an empty folder to a report that answers in English or Arabic: the data and the forecasts, the semantic model as code, the custom visual, Power BI Desktop, the AI gateway, the audit log and the tests. The written version is [docs/BUILD_GUIDE.md](docs/BUILD_GUIDE.md).
 
 <details>
 <summary><b>Chapters</b></summary>
@@ -51,7 +51,7 @@ From an empty folder to a report that answers in Arabic: the data and the foreca
 | [1:18](https://youtu.be/_iYsbsh9m6o?t=78) | The trade-offs | [6:17](https://youtu.be/_iYsbsh9m6o?t=377) | The report |
 | [1:47](https://youtu.be/_iYsbsh9m6o?t=107) | Four layers | [6:58](https://youtu.be/_iYsbsh9m6o?t=418) | Forecast page and inflation scenarios |
 | [2:07](https://youtu.be/_iYsbsh9m6o?t=127) | Data and forecasts | [7:29](https://youtu.be/_iYsbsh9m6o?t=449) | The AI gateway |
-| [2:57](https://youtu.be/_iYsbsh9m6o?t=177) | The semantic model as code | [8:18](https://youtu.be/_iYsbsh9m6o?t=498) | Asking in Egyptian Arabic and English |
+| [2:57](https://youtu.be/_iYsbsh9m6o?t=177) | The semantic model as code | [8:18](https://youtu.be/_iYsbsh9m6o?t=498) | Asking in English and Arabic |
 | [3:48](https://youtu.be/_iYsbsh9m6o?t=228) | The custom visual | [9:08](https://youtu.be/_iYsbsh9m6o?t=548) | Audit: every question logged |
 | [4:22](https://youtu.be/_iYsbsh9m6o?t=262) | Packaging the .pbiviz | [9:31](https://youtu.be/_iYsbsh9m6o?t=571) | 42 test questions and an MCP client |
 | [4:37](https://youtu.be/_iYsbsh9m6o?t=277) | Opening the PBIP in Power BI Desktop | [9:54](https://youtu.be/_iYsbsh9m6o?t=594) | The same pattern on SQL Server |
@@ -65,20 +65,20 @@ From an empty folder to a report that answers in Arabic: the data and the foreca
 <table>
 <tr>
 <td width="44%" valign="top">
-<img src="docs/media/ask-ai.gif" width="100%" alt="Ask AI inside Power BI: an Arabic question, a follow-up and an English comparison">
+<img src="docs/media/ask-ai.gif" width="100%" alt="Ask AI inside Power BI: an English question, then the same report asked in Arabic">
 </td>
 <td valign="top">
 
 **Three questions, three routes:**
 
-**1. «إيديتا هتعمل كام في 2027؟»** (How much will Edita make in 2027?)<br>
+**1. "Compare Pepsi and Coca-Cola in Cairo vs Alexandria"**<br>
+Gemini makes four `search_share` calls: **Pepsi 62% vs 31% in Cairo, 64% vs 28% in Alexandria**. `llm · 8/8 figures traced`
+
+**2. «إيديتا هتعمل كام في 2027؟»** — the same report, asked in Arabic (*How much will Edita make in 2027?*)<br>
 A known question shape. The router answers it in code from DAX rows: **EGP 34.5B, +27.9%**. `instant · 0 tokens`
 
-**2. «وبعد التضخم؟»** (And after inflation?)<br>
+**3. «وبعد التضخم؟»** (*And after inflation?*)<br>
 On its own it means nothing, so it goes to Gemini with the last turns of the chat. One tool call, **+12.4% real growth**, every figure traced. `llm · 6/6 figures traced`
-
-**3. "Compare Pepsi and Coca-Cola in Cairo vs Alexandria"**<br>
-Gemini makes four `search_share` calls: **Pepsi 62% vs 31% in Cairo, 64% vs 28% in Alexandria**. `llm · 8/8 figures traced`
 
 **And the ones it refuses.** *"What is Juhayna's profit margin?"* The model doesn't hold margins, so the scope gate says so before any AI call. *"Ignore previous instructions…"* is refused too, even mid-conversation.
 
@@ -205,7 +205,7 @@ Every badge at the top reads [`docs/metrics.json`](docs/metrics.json). CI recomp
 MASE below 1 beats a same-quarter-last-year guess. Domty is the honest outlier, and the report says so on its page.
 
 **The assistant.**
-- **42 / 42** routing evals: English and Egyptian Arabic, plus traps such as foreign brands, metrics the model doesn't hold and prompt injection. They need no AI call and run in CI.
+- **42 / 42** routing evals: English and Arabic, plus traps such as foreign brands, metrics the model doesn't hold and prompt injection. They need no AI call and run in CI.
 - **42 / 42** on the live run through DAX and Gemini, plus **3 / 3** multi-turn conversations (last run 2026-11-06).
 - **97.4% fewer tokens.** An MCP tool call averages **848 tokens**, while pasting the workbook costs **32,190** per question ([benchmark](mcp/token_benchmark.json)).
 

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 400" width="1280" height="400" role="img" aria-label="Egypt Market Intelligence: a Power BI report you can ask in Arabic or English, with every number traced to a DAX query">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 400" width="1280" height="400" role="img" aria-label="Egypt Market Intelligence: a Power BI report you can ask in English or Arabic, with every number traced to a DAX query">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#0E2826"/>
@@ -62,7 +62,7 @@
     <text x="118" y="76" class="f" font-size="13" font-weight="700" letter-spacing="3.2" fill="#E0B356">POWER BI  ·  CUSTOM VISUAL  ·  AI GATEWAY  ·  MCP</text>
 
     <text x="62" y="146" class="f" font-size="54" font-weight="800" fill="#FFFFFF" letter-spacing="-.5">Egypt Market Intelligence</text>
-    <text x="64" y="188" class="f" font-size="22" fill="#E8E1D4">A Power BI report you can ask, in Arabic or English.</text>
+    <text x="64" y="188" class="f" font-size="22" fill="#E8E1D4">A Power BI report you can ask, in English or Arabic.</text>
     <text x="64" y="224" class="ar" font-size="21" fill="#E0B356" direction="rtl" unicode-bidi="embed" text-anchor="end">اسأل التقرير بالعربي، وكل رقم ليه مصدر</text>
 
     <!-- rotating tagline -->
