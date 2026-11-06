@@ -1,8 +1,10 @@
 <div align="center">
 
-<a href="docs/BUILD_GUIDE.md"><img src="docs/media/banner.svg" width="100%" alt="Egypt Market Intelligence: a Power BI report you can ask in Arabic or English"></a>
+<a href="https://youtu.be/_iYsbsh9m6o"><img src="docs/media/banner.svg" width="100%" alt="Egypt Market Intelligence: a Power BI report you can ask in Arabic or English"></a>
 
 <br>
+
+[![Watch on YouTube](https://img.shields.io/badge/▶%20Watch%20the%20full%20build-10%20min%20on%20YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/_iYsbsh9m6o)
 
 [![build](https://github.com/Moataz-Elmesmary/egypt-market-intelligence/actions/workflows/ci.yml/badge.svg)](https://github.com/Moataz-Elmesmary/egypt-market-intelligence/actions/workflows/ci.yml)
 [![routing evals](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMoataz-Elmesmary%2Fegypt-market-intelligence%2Fmain%2Fdocs%2Fmetrics.json&query=%24.routing&label=routing%20evals&color=0B6E69)](backend/evals.py)
@@ -21,7 +23,7 @@
 
 ### A Power BI report you can talk to, in Egyptian Arabic or English.<br>Every number in an answer comes from a DAX query you can open and rerun.
 
-[**▶ Watch the full build**](#-the-full-build-in-10-minutes) &nbsp;·&nbsp;
+[**▶ Watch the full build**](https://youtu.be/_iYsbsh9m6o) &nbsp;·&nbsp;
 [**See it work**](#-see-it-work) &nbsp;·&nbsp;
 [**How it works**](#-how-it-works) &nbsp;·&nbsp;
 [**Run it**](#-run-it-yourself) &nbsp;·&nbsp;
@@ -33,8 +35,9 @@
 
 ## ▶ The full build, in 10 minutes
 
-<a href="docs/BUILD_GUIDE.md"><img src="docs/media/video-poster.png" width="100%" alt="Watch: AI inside Power BI, the full build (10:44)"></a>
+<a href="https://youtu.be/_iYsbsh9m6o"><img src="docs/media/video-poster.png" width="100%" alt="Watch: AI inside Power BI, the full build (10:44)"></a>
 
+**[Watch it on YouTube →](https://youtu.be/_iYsbsh9m6o)**  
 From an empty folder to a report that answers in Arabic: the data and the forecasts, the semantic model as code, the custom visual, Power BI Desktop, the AI gateway, the audit log and the tests. The written version is [docs/BUILD_GUIDE.md](docs/BUILD_GUIDE.md).
 
 <details>
@@ -42,16 +45,16 @@ From an empty folder to a report that answers in Arabic: the data and the foreca
 
 | Time | Chapter | Time | Chapter |
 |---:|---|---:|---|
-| 0:00 | A Power BI report you can talk to | 5:10 | Importing a custom visual |
-| 0:24 | The rule: the model never touches the data | 5:34 | Model view: 18 tables, 78 measures |
-| 0:39 | Six ways to put AI in Power BI | 5:58 | DAX query view: the tool's exact query |
-| 1:18 | The trade-offs | 6:17 | The report |
-| 1:47 | Four layers | 6:58 | Forecast page and inflation scenarios |
-| 2:07 | Data and forecasts | 7:29 | The AI gateway |
-| 2:57 | The semantic model as code | 8:18 | Asking in Egyptian Arabic and English |
-| 3:48 | The custom visual | 9:08 | Audit: every question logged |
-| 4:22 | Packaging the .pbiviz | 9:31 | 42 test questions and an MCP client |
-| 4:37 | Opening the PBIP in Power BI Desktop | 9:54 | The same pattern on SQL Server |
+| [0:00](https://youtu.be/_iYsbsh9m6o?t=0) | A Power BI report you can talk to | [5:10](https://youtu.be/_iYsbsh9m6o?t=310) | Importing a custom visual |
+| [0:24](https://youtu.be/_iYsbsh9m6o?t=24) | The rule: the model never touches the data | [5:34](https://youtu.be/_iYsbsh9m6o?t=334) | Model view: 18 tables, 78 measures |
+| [0:39](https://youtu.be/_iYsbsh9m6o?t=39) | Six ways to put AI in Power BI | [5:58](https://youtu.be/_iYsbsh9m6o?t=358) | DAX query view: the tool's exact query |
+| [1:18](https://youtu.be/_iYsbsh9m6o?t=78) | The trade-offs | [6:17](https://youtu.be/_iYsbsh9m6o?t=377) | The report |
+| [1:47](https://youtu.be/_iYsbsh9m6o?t=107) | Four layers | [6:58](https://youtu.be/_iYsbsh9m6o?t=418) | Forecast page and inflation scenarios |
+| [2:07](https://youtu.be/_iYsbsh9m6o?t=127) | Data and forecasts | [7:29](https://youtu.be/_iYsbsh9m6o?t=449) | The AI gateway |
+| [2:57](https://youtu.be/_iYsbsh9m6o?t=177) | The semantic model as code | [8:18](https://youtu.be/_iYsbsh9m6o?t=498) | Asking in Egyptian Arabic and English |
+| [3:48](https://youtu.be/_iYsbsh9m6o?t=228) | The custom visual | [9:08](https://youtu.be/_iYsbsh9m6o?t=548) | Audit: every question logged |
+| [4:22](https://youtu.be/_iYsbsh9m6o?t=262) | Packaging the .pbiviz | [9:31](https://youtu.be/_iYsbsh9m6o?t=571) | 42 test questions and an MCP client |
+| [4:37](https://youtu.be/_iYsbsh9m6o?t=277) | Opening the PBIP in Power BI Desktop | [9:54](https://youtu.be/_iYsbsh9m6o?t=594) | The same pattern on SQL Server |
 
 </details>
 
