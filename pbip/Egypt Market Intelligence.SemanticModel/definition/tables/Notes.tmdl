@@ -1,0 +1,97 @@
+table Notes
+	lineageTag: 0820e96c-9006-502a-be2d-075b3288cdff
+
+	measure 'Show Note' =
+			VAR cat = SELECTEDVALUE ( Brand[Category] )
+			VAR co = SELECTEDVALUE ( 'Company'[Company] )
+			VAR nc = SELECTEDVALUE ( 'Notes'[Category] )
+			VAR nco = SELECTEDVALUE ( 'Notes'[Company] )
+			RETURN IF ( ( nc = "" || nc = cat ) && ( nco = "" || nco = co ), 1 )
+		formatString: 0
+		lineageTag: 954da423-a975-5558-8ffe-807309a06020
+
+	column Page
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Page
+		lineageTag: bf366584-3ad8-5470-9002-ba88b2e5a2a8
+
+		annotation SummarizationSetBy = User
+
+	column Category
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Category
+		lineageTag: eae98471-587b-5c84-8e89-d34c9f372a6a
+
+		annotation SummarizationSetBy = User
+
+	column Company
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Company
+		lineageTag: 6d97175e-cb21-5688-9355-44dcc4fc6761
+
+		annotation SummarizationSetBy = User
+
+	column Ord
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ord
+		lineageTag: 23de4d97-c404-5e42-9182-11ab51297271
+
+		annotation SummarizationSetBy = User
+
+	column Tone
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Tone
+		lineageTag: dbfb4cd2-fffc-528d-b799-14e2362745c7
+
+		annotation SummarizationSetBy = User
+
+	column Title
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Title
+		lineageTag: c2e4ba72-64df-5393-be20-9282469ad0af
+
+		annotation SummarizationSetBy = User
+
+	column TitleAR
+		dataType: string
+		summarizeBy: none
+		sourceColumn: TitleAR
+		lineageTag: 6d097a06-ed5e-59cd-a904-2fe94e8e03e1
+
+		annotation SummarizationSetBy = User
+
+	column Body
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Body
+		lineageTag: 2a2c9399-84fb-532d-b09d-b9a4f46f17ac
+
+		annotation SummarizationSetBy = User
+
+	column Source
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Source
+		lineageTag: 975da600-5eb0-5707-a4ea-11e1adebb4a7
+
+		annotation SummarizationSetBy = User
+
+	partition Notes = m
+		mode: import
+		source =
+				let
+				    Bytes = if Text.StartsWith(XlsxPath, "http") then Web.Contents(XlsxPath) else File.Contents(XlsxPath),
+				    Source = Excel.Workbook(Bytes, null, true),
+				    Data = Source{[Item="Notes",Kind="Sheet"]}[Data],
+				    Promoted = Table.PromoteHeaders(Data, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"Page", type text}, {"Category", type text}, {"Company", type text}, {"Ord", Int64.Type}, {"Tone", type text}, {"Title", type text}, {"TitleAR", type text}, {"Body", type text}, {"Source", type text}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,57 @@
+table Scenario
+	lineageTag: c7b4ffd8-977a-54ea-81c9-8227ab673206
+
+	column Scenario
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Scenario
+		sortByColumn: Ord
+		lineageTag: 369c0cf5-5aa1-5395-a55a-1831745316c1
+
+		annotation SummarizationSetBy = User
+
+	column Ord
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ord
+		lineageTag: 6b803442-297d-57cb-a255-b39b138664c8
+
+		annotation SummarizationSetBy = User
+
+	column Inflation
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Inflation
+		lineageTag: d2adf715-40cc-591e-9cf6-eeb33f02a9a8
+
+		annotation SummarizationSetBy = User
+
+	column FX2027
+		dataType: double
+		summarizeBy: none
+		sourceColumn: FX2027
+		lineageTag: 3ca797e9-42ac-57d7-9bf5-71d7c88cbbea
+
+		annotation SummarizationSetBy = User
+
+	column Note
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Note
+		lineageTag: 3411d506-0539-5e78-9c5c-78063e197ac0
+
+		annotation SummarizationSetBy = User
+
+	partition Scenario = m
+		mode: import
+		source =
+				let
+				    Bytes = if Text.StartsWith(XlsxPath, "http") then Web.Contents(XlsxPath) else File.Contents(XlsxPath),
+				    Source = Excel.Workbook(Bytes, null, true),
+				    Data = Source{[Item="Scenario",Kind="Sheet"]}[Data],
+				    Promoted = Table.PromoteHeaders(Data, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"Scenario", type text}, {"Ord", Int64.Type}, {"Inflation", type number}, {"FX2027", type number}, {"Note", type text}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

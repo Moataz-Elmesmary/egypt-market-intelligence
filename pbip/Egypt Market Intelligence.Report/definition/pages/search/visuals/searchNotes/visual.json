@@ -1,0 +1,349 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "searchNotes",
+  "position": {
+    "x": 972,
+    "y": 230,
+    "z": 650,
+    "height": 470,
+    "width": 284,
+    "tabOrder": 650
+  },
+  "visual": {
+    "visualType": "egyptPulse8AAD5EB20DBA4B41B73872D4B222801B",
+    "query": {
+      "queryState": {
+        "fields": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Notes"
+                    }
+                  },
+                  "Property": "Page"
+                }
+              },
+              "queryRef": "Notes.Page",
+              "nativeQueryRef": "Page"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Notes"
+                    }
+                  },
+                  "Property": "Ord"
+                }
+              },
+              "queryRef": "Notes.Ord",
+              "nativeQueryRef": "Ord"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Notes"
+                    }
+                  },
+                  "Property": "Tone"
+                }
+              },
+              "queryRef": "Notes.Tone",
+              "nativeQueryRef": "Tone"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Notes"
+                    }
+                  },
+                  "Property": "Title"
+                }
+              },
+              "queryRef": "Notes.Title",
+              "nativeQueryRef": "Title"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Notes"
+                    }
+                  },
+                  "Property": "TitleAR"
+                }
+              },
+              "queryRef": "Notes.TitleAR",
+              "nativeQueryRef": "TitleAR"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Notes"
+                    }
+                  },
+                  "Property": "Body"
+                }
+              },
+              "queryRef": "Notes.Body",
+              "nativeQueryRef": "Body"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Notes"
+                    }
+                  },
+                  "Property": "Source"
+                }
+              },
+              "queryRef": "Notes.Source",
+              "nativeQueryRef": "Source"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Notes"
+                    }
+                  },
+                  "Property": "Category"
+                }
+              },
+              "queryRef": "Notes.Category",
+              "nativeQueryRef": "Category"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Notes"
+                    }
+                  },
+                  "Property": "Company"
+                }
+              },
+              "queryRef": "Notes.Company",
+              "nativeQueryRef": "Company"
+            }
+          ]
+        },
+        "values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Notes"
+                    }
+                  },
+                  "Property": "Show Note"
+                }
+              },
+              "queryRef": "Notes.Show Note",
+              "nativeQueryRef": "Show Note"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "settings": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'notes'"
+                }
+              }
+            },
+            "page": {
+              "expr": {
+                "Literal": {
+                  "Value": "'search'"
+                }
+              }
+            },
+            "title": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            },
+            "subtitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "''"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.0D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.0D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.0D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "searchNotesF",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Notes"
+              }
+            },
+            "Property": "Page"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "s",
+              "Entity": "Notes",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "s"
+                          }
+                        },
+                        "Property": "Page"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'search'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,356 @@
+table Company
+	lineageTag: f6b23844-f766-5e23-92da-9c6122041844
+
+	measure 'Company Name' = SELECTEDVALUE ( 'Company'[Company], "All four companies" )
+		lineageTag: 2c89c61c-ea9a-5912-a0e3-d948bb16f553
+
+	measure 'Revenue 2025 (EGP B)' = DIVIDE ( SUM ( 'Company'[Revenue2025] ), 1000 )
+		formatString: 0.0
+		lineageTag: 4ad5b798-7803-537e-a325-cf63694a5b08
+
+	measure 'Forecast 2027 (EGP B)' = DIVIDE ( SUM ( 'Company'[Forecast2027] ), 1000 )
+		formatString: 0.0
+		lineageTag: 23fe5efa-e682-5cbe-8b90-3db81a25d236
+
+	measure 'Growth 2027' = DIVIDE ( SUM ( 'Company'[Forecast2027] ), SUM ( 'Company'[Forecast2026] ) ) - 1
+		formatString: +0.0%;-0.0%
+		lineageTag: 454f6d7a-e733-5fd0-b065-4ee7d3d1ad89
+
+	measure 'Forecast Error' = DIVIDE ( AVERAGE ( 'Company'[EnsembleMAPE] ), 100 )
+		formatString: 0.0%
+		lineageTag: c2a22b0e-cb87-53b9-aec2-21a9ffaa87db
+
+	measure Confidence = SELECTEDVALUE ( 'Company'[Reliability], "Pick a company" )
+		lineageTag: e1dec3e6-a856-5b2a-ae6b-74c8a54d7ba3
+
+	measure 'Confidence Color' = SWITCH ( SELECTEDVALUE ( 'Company'[Reliability] ), "High", "#0B6E69", "Medium", "#C2922F", "Low", "#8A6516", "#4F5F5C" )
+		lineageTag: b3851cca-4ac5-5c4b-8c75-b67a45c89614
+
+	measure 'Best Model' = SELECTEDVALUE ( 'Company'[BestModel], "Pick a company" )
+		lineageTag: aba8bd52-69eb-5a61-b903-22482eb6bf5f
+
+	measure 'Model Blend' = SELECTEDVALUE ( 'Company'[Blend], "Pick a company" )
+		lineageTag: 9333222e-1ff6-51c4-bea3-7d3e595bb5d2
+
+	measure 'Real Growth 2027' = AVERAGE ( 'Company'[RealGrowth2027] )
+		formatString: +0.0%;-0.0%
+		lineageTag: 37e19f5d-e7f4-5441-b2a6-a18642f60c74
+
+	measure 'MASE Score' = AVERAGE ( 'Company'[MASE] )
+		formatString: 0.00
+		lineageTag: cf237ce2-8cd5-555d-8ede-871d42227552
+
+	measure 'Band Coverage' = SELECTEDVALUE ( 'Company'[Coverage], "Pick a company" )
+		lineageTag: 79277ffd-a57e-5198-8a73-b3513fc99ccf
+
+	measure 'Method Note' = SELECTEDVALUE ( 'Company'[MethodNote], "Pick a company to see how its forecast was tested." )
+		lineageTag: a804b7ec-0b09-55c8-90b7-6b6caf871387
+
+	measure 'Accuracy Note' = "How it is scored: each model is refit on the history up to a cut-off, forecasts the next 4 quarters, and is compared with what actually happened (rolling-origin backtest). The 3 lowest-error models are blended by inverse error. The 80% band is the 80th percentile of the ensemble's own past misses at each horizon, so it widens with the horizon."
+		lineageTag: d57955ec-ed6d-59a0-8e08-b1f8c8d77b54
+
+	measure 'Forecast Insight' = SELECTEDVALUE ( 'Company'[InsightEN], "Pick a company above: its forecast, how the ensemble is built and how far off it was on quarters it never saw." )
+		lineageTag: 2119628c-de2b-5ab1-8fca-2fbe34437824
+
+	column Company
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Company
+		sortByColumn: Sort
+		lineageTag: 7a93bb69-40e1-53a5-bfae-d6192ca216e2
+
+		annotation SummarizationSetBy = User
+
+	column CompanyAR
+		dataType: string
+		summarizeBy: none
+		sourceColumn: CompanyAR
+		lineageTag: 72334fd2-0f20-5473-8098-7be3a19a7af6
+
+		annotation SummarizationSetBy = User
+
+	column Ticker
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Ticker
+		lineageTag: e1a91a92-c9a0-5465-a25e-473b33d308f9
+
+		annotation SummarizationSetBy = User
+
+	column Segment
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Segment
+		lineageTag: d4212ee9-49e6-5f37-a364-4b84814eb75a
+
+		annotation SummarizationSetBy = User
+
+	column SegmentAR
+		dataType: string
+		summarizeBy: none
+		sourceColumn: SegmentAR
+		lineageTag: 312c5e9c-707a-548b-9e3c-431de3117da4
+
+		annotation SummarizationSetBy = User
+
+	column Revenue2025
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Revenue2025
+		lineageTag: bc2e8c89-8d99-5b01-823c-dfb2fc4e6c8d
+
+		annotation SummarizationSetBy = User
+
+	column Forecast2026
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Forecast2026
+		lineageTag: 14364f58-bd40-5d90-a855-984e4f1d25ce
+
+		annotation SummarizationSetBy = User
+
+	column Forecast2027
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Forecast2027
+		lineageTag: a1750a5c-3b64-5539-8cf7-1dcde55e8b06
+
+		annotation SummarizationSetBy = User
+
+	column Growth2026
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Growth2026
+		lineageTag: f42e57ff-94c7-54ae-9f7d-01d5215dfa5d
+
+		annotation SummarizationSetBy = User
+
+	column Growth2027
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Growth2027
+		lineageTag: 53f59457-a336-5bc4-bc96-04029d78fa1b
+
+		annotation SummarizationSetBy = User
+
+	column Revenue2025USD
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Revenue2025USD
+		lineageTag: 397af464-ce5a-5aad-acbe-11db2e0736c9
+
+		annotation SummarizationSetBy = User
+
+	column Forecast2027USD
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Forecast2027USD
+		lineageTag: 999fbd1c-6e33-52c9-bed7-2c0abf99e0dc
+
+		annotation SummarizationSetBy = User
+
+	column EnsembleMAPE
+		dataType: double
+		summarizeBy: none
+		sourceColumn: EnsembleMAPE
+		lineageTag: 6903f02c-7074-58c5-b44b-f28cb0dd39c1
+
+		annotation SummarizationSetBy = User
+
+	column BestModel
+		dataType: string
+		summarizeBy: none
+		sourceColumn: BestModel
+		lineageTag: 3a639ae2-9f70-5af8-9ef2-ea1ac0be7ec8
+
+		annotation SummarizationSetBy = User
+
+	column BestModelMAPE
+		dataType: double
+		summarizeBy: none
+		sourceColumn: BestModelMAPE
+		lineageTag: d4385830-c926-539d-9d53-8e7849861d79
+
+		annotation SummarizationSetBy = User
+
+	column Blend
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Blend
+		lineageTag: c9ceb847-b9e0-55f3-bb6f-05007831fab0
+
+		annotation SummarizationSetBy = User
+
+	column Reliability
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Reliability
+		lineageTag: eb145b3e-7e9d-556c-9036-8abbd3461411
+
+		annotation SummarizationSetBy = User
+
+	column ReliabilityAR
+		dataType: string
+		summarizeBy: none
+		sourceColumn: ReliabilityAR
+		lineageTag: 4da450f2-e3bf-5de3-903b-4c82a289a041
+
+		annotation SummarizationSetBy = User
+
+	column InsightEN
+		dataType: string
+		summarizeBy: none
+		sourceColumn: InsightEN
+		lineageTag: cbbfdf2a-da07-5d5d-b49d-f81bf710a902
+
+		annotation SummarizationSetBy = User
+
+	column InsightAR
+		dataType: string
+		summarizeBy: none
+		sourceColumn: InsightAR
+		lineageTag: ed3ab06e-8f10-53cd-8513-e31a9be1c377
+
+		annotation SummarizationSetBy = User
+
+	column Sort
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Sort
+		lineageTag: d09c411e-2dfa-5b8c-894f-798041cf1cfd
+
+		annotation SummarizationSetBy = User
+
+	column RealGrowth2027
+		dataType: double
+		summarizeBy: none
+		sourceColumn: RealGrowth2027
+		lineageTag: e4f1d97b-b712-5fd3-9002-849b67a89b92
+
+		annotation SummarizationSetBy = User
+
+	column InflationPart
+		dataType: double
+		summarizeBy: none
+		sourceColumn: InflationPart
+		lineageTag: e5061bab-4b69-5253-a9da-787b0a2dcd3d
+
+		annotation SummarizationSetBy = User
+
+	column Forecast2027Low
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Forecast2027Low
+		lineageTag: 29f37bf2-20ae-5204-a4a5-568c6c9185a5
+
+		annotation SummarizationSetBy = User
+
+	column Forecast2027High
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Forecast2027High
+		lineageTag: 03f4f275-aff7-582f-b4a5-72932cc0555b
+
+		annotation SummarizationSetBy = User
+
+	column MASE
+		dataType: double
+		summarizeBy: none
+		sourceColumn: MASE
+		lineageTag: 530853f6-6733-5c28-ae87-00fe71a4fece
+
+		annotation SummarizationSetBy = User
+
+	column CoverageIn
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: CoverageIn
+		lineageTag: 63ea1b7e-bb63-53d5-9645-2b693f7e8c01
+
+		annotation SummarizationSetBy = User
+
+	column CoverageN
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: CoverageN
+		lineageTag: 543a9a92-a8b5-50f3-bc79-c9eaeb96831c
+
+		annotation SummarizationSetBy = User
+
+	column Coverage
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Coverage
+		lineageTag: d8365bb8-b08e-51b3-a0b6-798328d60804
+
+		annotation SummarizationSetBy = User
+
+	column ErrH1
+		dataType: double
+		summarizeBy: none
+		sourceColumn: ErrH1
+		lineageTag: ff9ebaa5-3b70-5684-bf09-e046ea6f0895
+
+		annotation SummarizationSetBy = User
+
+	column ErrH2
+		dataType: double
+		summarizeBy: none
+		sourceColumn: ErrH2
+		lineageTag: 0b094bd5-1697-5cc5-bbda-a48093bfaa93
+
+		annotation SummarizationSetBy = User
+
+	column ErrH3
+		dataType: double
+		summarizeBy: none
+		sourceColumn: ErrH3
+		lineageTag: ad2f8ceb-7340-5f32-bd66-b812793e0b27
+
+		annotation SummarizationSetBy = User
+
+	column ErrH4
+		dataType: double
+		summarizeBy: none
+		sourceColumn: ErrH4
+		lineageTag: 3f4746f4-3762-58ca-b2bd-da0a87a6dba9
+
+		annotation SummarizationSetBy = User
+
+	column BacktestMAPE
+		dataType: double
+		summarizeBy: none
+		sourceColumn: BacktestMAPE
+		lineageTag: 373f03ad-4771-5aa9-a377-631d73091359
+
+		annotation SummarizationSetBy = User
+
+	column RealMethodMAPE
+		dataType: double
+		summarizeBy: none
+		sourceColumn: RealMethodMAPE
+		lineageTag: 1c868eef-8dfb-5a36-be18-5a97ccf951a3
+
+		annotation SummarizationSetBy = User
+
+	column MethodNote
+		dataType: string
+		summarizeBy: none
+		sourceColumn: MethodNote
+		lineageTag: e5f56fa8-5863-57d2-b7fe-687dd13a993a
+
+		annotation SummarizationSetBy = User
+
+	partition Company = m
+		mode: import
+		source =
+				let
+				    Bytes = if Text.StartsWith(XlsxPath, "http") then Web.Contents(XlsxPath) else File.Contents(XlsxPath),
+				    Source = Excel.Workbook(Bytes, null, true),
+				    Data = Source{[Item="Company",Kind="Sheet"]}[Data],
+				    Promoted = Table.PromoteHeaders(Data, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"Company", type text}, {"CompanyAR", type text}, {"Ticker", type text}, {"Segment", type text}, {"SegmentAR", type text}, {"Revenue2025", type number}, {"Forecast2026", type number}, {"Forecast2027", type number}, {"Growth2026", type number}, {"Growth2027", type number}, {"Revenue2025USD", type number}, {"Forecast2027USD", type number}, {"EnsembleMAPE", type number}, {"BestModel", type text}, {"BestModelMAPE", type number}, {"Blend", type text}, {"Reliability", type text}, {"ReliabilityAR", type text}, {"InsightEN", type text}, {"InsightAR", type text}, {"Sort", Int64.Type}, {"RealGrowth2027", type number}, {"InflationPart", type number}, {"Forecast2027Low", type number}, {"Forecast2027High", type number}, {"MASE", type number}, {"CoverageIn", Int64.Type}, {"CoverageN", Int64.Type}, {"Coverage", type text}, {"ErrH1", type number}, {"ErrH2", type number}, {"ErrH3", type number}, {"ErrH4", type number}, {"BacktestMAPE", type number}, {"RealMethodMAPE", type number}, {"MethodNote", type text}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

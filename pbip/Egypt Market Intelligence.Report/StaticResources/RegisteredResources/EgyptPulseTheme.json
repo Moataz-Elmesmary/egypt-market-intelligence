@@ -1,0 +1,136 @@
+{
+  "name": "Egypt Market",
+  "dataColors": [
+    "#0B6E69",
+    "#C2922F",
+    "#7FB8B3",
+    "#E0C27A",
+    "#4F8F8A",
+    "#A07F3C",
+    "#B5AA95",
+    "#D3C9B6",
+    "#1C2928"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#1C2928",
+  "tableAccent": "#0B6E69",
+  "good": "#0B6E69",
+  "bad": "#8A6516",
+  "neutral": "#C2922F",
+  "textClasses": {
+    "title": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 12,
+      "color": "#1C2928"
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 10,
+      "color": "#4F5F5C"
+    },
+    "callout": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 28,
+      "color": "#1C2928"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#E8E1D4"
+              }
+            },
+            "radius": 14
+          }
+        ],
+        "dropShadow": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#3C2D14"
+              }
+            },
+            "position": "Outer",
+            "preset": "Custom",
+            "shadowSpread": 0,
+            "shadowBlur": 16,
+            "angle": 90,
+            "shadowDistance": 4,
+            "transparency": 86
+          }
+        ],
+        "title": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#1C2928"
+              }
+            },
+            "fontSize": 12,
+            "fontFamily": "Segoe UI Semibold"
+          }
+        ],
+        "visualHeader": [
+          {
+            "background": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "foreground": {
+              "solid": {
+                "color": "#4F5F5C"
+              }
+            },
+            "border": {
+              "solid": {
+                "color": "#E8E1D4"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#F5F0E7"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "outspace": [
+          {
+            "color": {
+              "solid": {
+                "color": "#ECE4D6"
+              }
+            },
+            "transparency": 0
+          }
+        ]
+      }
+    }
+  }
+}

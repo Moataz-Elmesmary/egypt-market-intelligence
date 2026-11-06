@@ -1,0 +1,119 @@
+table Backtest
+	lineageTag: 575ff407-4b3f-5eea-a33f-6ac2d518f95c
+
+	measure 'Horizon Error' = AVERAGE ( 'Backtest'[APE] )
+		formatString: 0.0%
+		lineageTag: 6ac2fbc3-5ee5-5df6-98b8-7b80905efefe
+
+	measure 'Backtest Actual' = SUM ( 'Backtest'[Actual] )
+		formatString: #,0
+		lineageTag: 1b155d25-3ef2-51a8-8a55-b052b122c3af
+
+	measure 'Backtest Forecast' = SUM ( 'Backtest'[Forecast] )
+		formatString: #,0
+		lineageTag: 7f5f1a3f-c478-5b85-b1a5-bbf0a3b25bff
+
+	measure 'Band Low' = SUM ( 'Backtest'[Lo80] )
+		formatString: #,0
+		lineageTag: 764d22ed-9563-5171-8e07-4f2031dddd9f
+
+	measure 'Band High' = SUM ( 'Backtest'[Hi80] )
+		formatString: #,0
+		lineageTag: 5a4d7726-e56a-5aa4-b96e-7636f15e72a6
+
+	measure 'In Band' = IF ( HASONEVALUE ( 'Backtest'[Quarter] ), IF ( SUM ( 'Backtest'[Inside] ) = 1, "✓ inside", "✗ outside" ) )
+		lineageTag: 2d8a0b6e-81a1-5c81-9322-a004ea9387a1
+
+	column Company
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Company
+		lineageTag: 48031d4c-4888-50e2-a9ca-94c514f14ec9
+
+		annotation SummarizationSetBy = User
+
+	column Origin
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Origin
+		lineageTag: 0c65d86b-a9ea-5df1-a8b6-6b9793d5b879
+
+		annotation SummarizationSetBy = User
+
+	column Horizon
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Horizon
+		lineageTag: 5dc3e66a-fa7f-53bd-b839-85b61b9f28a7
+
+		annotation SummarizationSetBy = User
+
+	column Quarter
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Quarter
+		lineageTag: 2b948c0d-5ed0-549a-b60f-1714f3d6c81d
+
+		annotation SummarizationSetBy = User
+
+	column Actual
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Actual
+		lineageTag: f95a92c6-bf94-5be3-82db-d7ed012c1ddb
+
+		annotation SummarizationSetBy = User
+
+	column Forecast
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Forecast
+		lineageTag: 7c8c1081-c884-5e65-a73b-f352d8c1a1d1
+
+		annotation SummarizationSetBy = User
+
+	column Lo80
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Lo80
+		lineageTag: a838dd7c-88ba-55af-8d70-5757e8574599
+
+		annotation SummarizationSetBy = User
+
+	column Hi80
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Hi80
+		lineageTag: 21927ea4-602d-5fe4-9a20-674c1d464d70
+
+		annotation SummarizationSetBy = User
+
+	column Inside
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Inside
+		lineageTag: 1be940bd-1101-5a6d-bd6d-67a38d89acc3
+
+		annotation SummarizationSetBy = User
+
+	column APE
+		dataType: double
+		summarizeBy: none
+		sourceColumn: APE
+		lineageTag: 1f5a4253-bfd9-54ce-894d-1e85d60bdc74
+
+		annotation SummarizationSetBy = User
+
+	partition Backtest = m
+		mode: import
+		source =
+				let
+				    Bytes = if Text.StartsWith(XlsxPath, "http") then Web.Contents(XlsxPath) else File.Contents(XlsxPath),
+				    Source = Excel.Workbook(Bytes, null, true),
+				    Data = Source{[Item="Backtest",Kind="Sheet"]}[Data],
+				    Promoted = Table.PromoteHeaders(Data, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"Company", type text}, {"Origin", type text}, {"Horizon", Int64.Type}, {"Quarter", type text}, {"Actual", type number}, {"Forecast", type number}, {"Lo80", type number}, {"Hi80", type number}, {"Inside", Int64.Type}, {"APE", type number}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

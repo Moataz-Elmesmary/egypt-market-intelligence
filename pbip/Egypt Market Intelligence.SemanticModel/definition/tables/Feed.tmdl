@@ -1,0 +1,40 @@
+table Feed
+	lineageTag: fa55e017-cd5f-582a-b14a-ab553fd2f427
+
+	column Dataset
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Dataset
+		lineageTag: c629cc3b-824d-5101-af59-fdfd19011374
+
+		annotation SummarizationSetBy = User
+
+	column Seq
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Seq
+		lineageTag: f8e7ae63-c6ac-5fb0-baf4-19493b20d8c0
+
+		annotation SummarizationSetBy = User
+
+	column Json
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Json
+		lineageTag: fe8fbe24-7e71-5d7d-9504-55211ff52ad9
+
+		annotation SummarizationSetBy = User
+
+	partition Feed = m
+		mode: import
+		source =
+				let
+				    Bytes = if Text.StartsWith(XlsxPath, "http") then Web.Contents(XlsxPath) else File.Contents(XlsxPath),
+				    Source = Excel.Workbook(Bytes, null, true),
+				    Data = Source{[Item="Feed",Kind="Sheet"]}[Data],
+				    Promoted = Table.PromoteHeaders(Data, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"Dataset", type text}, {"Seq", Int64.Type}, {"Json", type text}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

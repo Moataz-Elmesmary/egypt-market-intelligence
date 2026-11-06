@@ -1,0 +1,75 @@
+table Insight
+	lineageTag: f42c22f7-de82-55a8-a94b-0156b52bb966
+
+	measure 'Delivery Insight' = CALCULATE ( SELECTEDVALUE ( 'Insight'[Title] ) & ". " & SELECTEDVALUE ( 'Insight'[Body] ), 'Insight'[Page] = "delivery", 'Insight'[Ord] = 1 )
+		lineageTag: 3e9c2ae4-765b-5270-ab38-bd057b2262a4
+
+	column Page
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Page
+		lineageTag: 24711cff-b1d1-5a8c-ba5f-2f9d499f0cfc
+
+		annotation SummarizationSetBy = User
+
+	column Ord
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ord
+		lineageTag: a689bdb7-9b10-5563-a85c-15da406c21be
+
+		annotation SummarizationSetBy = User
+
+	column Title
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Title
+		lineageTag: cc88401b-281c-52e1-b498-e44927b019bc
+
+		annotation SummarizationSetBy = User
+
+	column TitleAR
+		dataType: string
+		summarizeBy: none
+		sourceColumn: TitleAR
+		lineageTag: ee683299-5f52-519c-aa2b-1b867c55dba4
+
+		annotation SummarizationSetBy = User
+
+	column Body
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Body
+		lineageTag: b727bae2-ec18-527f-9ee5-fb751852736c
+
+		annotation SummarizationSetBy = User
+
+	column BodyAR
+		dataType: string
+		summarizeBy: none
+		sourceColumn: BodyAR
+		lineageTag: b43d2a8c-63bd-5ad4-8cb5-8fa2e61b3668
+
+		annotation SummarizationSetBy = User
+
+	column Source
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Source
+		lineageTag: 44b7f8bb-485a-5049-a294-3b77177d2aeb
+
+		annotation SummarizationSetBy = User
+
+	partition Insight = m
+		mode: import
+		source =
+				let
+				    Bytes = if Text.StartsWith(XlsxPath, "http") then Web.Contents(XlsxPath) else File.Contents(XlsxPath),
+				    Source = Excel.Workbook(Bytes, null, true),
+				    Data = Source{[Item="Insight",Kind="Sheet"]}[Data],
+				    Promoted = Table.PromoteHeaders(Data, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"Page", type text}, {"Ord", Int64.Type}, {"Title", type text}, {"TitleAR", type text}, {"Body", type text}, {"BodyAR", type text}, {"Source", type text}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

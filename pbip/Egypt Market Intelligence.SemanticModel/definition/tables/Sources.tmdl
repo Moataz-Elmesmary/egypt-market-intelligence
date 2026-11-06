@@ -1,0 +1,40 @@
+table Sources
+	lineageTag: b7d73e7b-a27d-5230-9a06-0450b0452b4b
+
+	column Id
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Id
+		lineageTag: b227b463-0e4b-5813-b6bc-3b559ea56e07
+
+		annotation SummarizationSetBy = User
+
+	column Title
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Title
+		lineageTag: a8c1c381-35d8-56a2-a90a-7ff05151d55c
+
+		annotation SummarizationSetBy = User
+
+	column URL
+		dataType: string
+		summarizeBy: none
+		sourceColumn: URL
+		lineageTag: 8aa1d9f8-af2e-52c6-9f27-5140a11c6529
+
+		annotation SummarizationSetBy = User
+
+	partition Sources = m
+		mode: import
+		source =
+				let
+				    Bytes = if Text.StartsWith(XlsxPath, "http") then Web.Contents(XlsxPath) else File.Contents(XlsxPath),
+				    Source = Excel.Workbook(Bytes, null, true),
+				    Data = Source{[Item="Sources",Kind="Sheet"]}[Data],
+				    Promoted = Table.PromoteHeaders(Data, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"Id", type text}, {"Title", type text}, {"URL", type text}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

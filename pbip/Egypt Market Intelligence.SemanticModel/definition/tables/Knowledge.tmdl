@@ -1,0 +1,88 @@
+table Knowledge
+	lineageTag: 529abc17-c122-5e0c-a6c9-b8284f398f06
+
+	column Id
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Id
+		lineageTag: bc81880c-ea5d-5ac8-90b0-06d7848fb7bf
+
+		annotation SummarizationSetBy = User
+
+	column Dataset
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Dataset
+		lineageTag: 7e5a34ac-eb15-5d0c-9f8b-78085b16b15e
+
+		annotation SummarizationSetBy = User
+
+	column Entity
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Entity
+		lineageTag: 405c1fc0-df41-52c7-9b36-7796098ef1d4
+
+		annotation SummarizationSetBy = User
+
+	column EntityAR
+		dataType: string
+		summarizeBy: none
+		sourceColumn: EntityAR
+		lineageTag: 6fb07efd-c8d1-5976-b10c-0e4dceed5ae0
+
+		annotation SummarizationSetBy = User
+
+	column Attr
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Attr
+		lineageTag: 01a7bd2d-1713-55a0-958f-98e7ca23c220
+
+		annotation SummarizationSetBy = User
+
+	column Period
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Period
+		lineageTag: fa877508-dedc-502b-b272-8844e1e6fc07
+
+		annotation SummarizationSetBy = User
+
+	column Value
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Value
+		lineageTag: 6024283d-1556-51e0-897a-93c1777750f5
+
+		annotation SummarizationSetBy = User
+
+	column Unit
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Unit
+		lineageTag: 2b69489d-df55-5b52-b3c7-af9ec2fe1459
+
+		annotation SummarizationSetBy = User
+
+	column Source
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Source
+		lineageTag: c06edcd9-5ea2-596e-b79a-4414dae32cc6
+
+		annotation SummarizationSetBy = User
+
+	partition Knowledge = m
+		mode: import
+		source =
+				let
+				    Bytes = if Text.StartsWith(XlsxPath, "http") then Web.Contents(XlsxPath) else File.Contents(XlsxPath),
+				    Source = Excel.Workbook(Bytes, null, true),
+				    Data = Source{[Item="Knowledge",Kind="Sheet"]}[Data],
+				    Promoted = Table.PromoteHeaders(Data, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"Id", Int64.Type}, {"Dataset", type text}, {"Entity", type text}, {"EntityAR", type text}, {"Attr", type text}, {"Period", type text}, {"Value", type number}, {"Unit", type text}, {"Source", type text}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

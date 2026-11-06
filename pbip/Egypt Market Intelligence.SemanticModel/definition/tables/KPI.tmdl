@@ -1,0 +1,116 @@
+table KPI
+	lineageTag: 719fd27d-471e-5ac1-a38f-98aa4f77d1ca
+
+	measure 'talabat Lead' = CALCULATE ( SELECTEDVALUE ( 'KPI'[Display] ), 'KPI'[Key] = "talabat" )
+		lineageTag: fa184e54-f706-5f6c-87a7-bd2aa3dbeabb
+
+	measure 'talabat GMV 2025' = CALCULATE ( SELECTEDVALUE ( 'KPI'[Display] ), 'KPI'[Key] = "gmv" )
+		lineageTag: d2d9df15-45cd-5466-9e80-2333edf9a7cb
+
+	measure 'Breadfast vs talabat' = CALCULATE ( SELECTEDVALUE ( 'KPI'[Display] ), 'KPI'[Key] = "bfratio" )
+		lineageTag: 2fc53df4-7496-5005-a964-88ed139967a4
+
+	measure 'Breadfast Funding' = CALCULATE ( SELECTEDVALUE ( 'KPI'[Display] ), 'KPI'[Key] = "bfraise" )
+		lineageTag: 901e03f1-1aad-5c15-a8e2-48bce8305a0c
+
+	column Page
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Page
+		lineageTag: a99d615d-4cdb-5cba-867b-f01a35b8132a
+
+		annotation SummarizationSetBy = User
+
+	column Ord
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ord
+		lineageTag: c24324f6-00b2-5f71-90f3-923a29a8f8bc
+
+		annotation SummarizationSetBy = User
+
+	column Key
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Key
+		lineageTag: b0bacc5d-b191-5489-bbbb-c9fcbaeade64
+
+		annotation SummarizationSetBy = User
+
+	column Label
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Label
+		lineageTag: 216319d2-277b-5d4c-bd27-8907ed2dd36b
+
+		annotation SummarizationSetBy = User
+
+	column LabelAR
+		dataType: string
+		summarizeBy: none
+		sourceColumn: LabelAR
+		lineageTag: a5859469-edc3-558d-9808-c7b3f45aad80
+
+		annotation SummarizationSetBy = User
+
+	column Value
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Value
+		lineageTag: cfb17fcf-1a72-59b1-b8de-f6625b3e70c7
+
+		annotation SummarizationSetBy = User
+
+	column Display
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Display
+		lineageTag: 61ef8c63-9db0-5385-bb28-8a490d4eb513
+
+		annotation SummarizationSetBy = User
+
+	column Sub
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Sub
+		lineageTag: 8c4393c3-fbc9-5f18-8c72-e1af0cfd4ddc
+
+		annotation SummarizationSetBy = User
+
+	column SubAR
+		dataType: string
+		summarizeBy: none
+		sourceColumn: SubAR
+		lineageTag: 7e188b76-971f-5883-b41e-99c94a95c425
+
+		annotation SummarizationSetBy = User
+
+	column Icon
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Icon
+		lineageTag: ada6b0c7-3ab4-5b51-b29f-9c097ab38fab
+
+		annotation SummarizationSetBy = User
+
+	column Source
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Source
+		lineageTag: c88e66fa-7ebe-51bd-9395-1093b0d650e7
+
+		annotation SummarizationSetBy = User
+
+	partition KPI = m
+		mode: import
+		source =
+				let
+				    Bytes = if Text.StartsWith(XlsxPath, "http") then Web.Contents(XlsxPath) else File.Contents(XlsxPath),
+				    Source = Excel.Workbook(Bytes, null, true),
+				    Data = Source{[Item="KPI",Kind="Sheet"]}[Data],
+				    Promoted = Table.PromoteHeaders(Data, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"Page", type text}, {"Ord", Int64.Type}, {"Key", type text}, {"Label", type text}, {"LabelAR", type text}, {"Value", type number}, {"Display", type text}, {"Sub", type text}, {"SubAR", type text}, {"Icon", type text}, {"Source", type text}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

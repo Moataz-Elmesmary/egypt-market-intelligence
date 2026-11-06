@@ -1,0 +1,266 @@
+{
+ "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+ "displayName": "Revenue forecast · err",
+ "name": "bmforecastErrOn",
+ "options": {
+  "targetVisualNames": [
+   "forecast_f27_bg",
+   "forecast_f27_l",
+   "forecast_f27_t",
+   "forecast_f27_x",
+   "forecast_err_bg",
+   "forecast_err_m",
+   "forecast_err_b",
+   "forecast_err_n",
+   "forecast_err_a",
+   "forecast_err_x",
+   "forecast_ai_bg",
+   "forecast_ai_panel",
+   "forecast_ai_x"
+  ],
+  "suppressData": true,
+  "applyOnlyToTargetVisuals": true,
+  "suppressActiveSection": true
+ },
+ "explorationState": {
+  "version": "1.0",
+  "activeSection": "forecast",
+  "sections": {
+   "forecast": {
+    "visualContainers": {
+     "forecastBg": {
+      "singleVisual": {
+       "visualType": "image",
+       "objects": {}
+      }
+     },
+     "forecastNav0": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "forecastNav1": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "forecastNav2": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "forecastNav4": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "forecastAsk": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "fcScenario": {
+      "singleVisual": {
+       "visualType": "slicer",
+       "objects": {}
+      }
+     },
+     "forecastCompany": {
+      "singleVisual": {
+       "visualType": "advancedSlicerVisual",
+       "objects": {}
+      }
+     },
+     "fcChart": {
+      "singleVisual": {
+       "visualType": "egyptPulse8AAD5EB20DBA4B41B73872D4B222801B",
+       "objects": {}
+      }
+     },
+     "fcModels": {
+      "singleVisual": {
+       "visualType": "tableEx",
+       "objects": {}
+      }
+     },
+     "fcAll": {
+      "singleVisual": {
+       "visualType": "clusteredBarChart",
+       "objects": {}
+      }
+     },
+     "forecastNotes": {
+      "singleVisual": {
+       "visualType": "egyptPulse8AAD5EB20DBA4B41B73872D4B222801B",
+       "objects": {}
+      }
+     },
+     "forecastTile0": {
+      "singleVisual": {
+       "visualType": "card",
+       "objects": {}
+      }
+     },
+     "forecastTileHit0": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "forecastTile1": {
+      "singleVisual": {
+       "visualType": "card",
+       "objects": {}
+      }
+     },
+     "forecastTileHit1": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "forecastTile2": {
+      "singleVisual": {
+       "visualType": "card",
+       "objects": {}
+      }
+     },
+     "forecastTileHit2": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "forecastTile3": {
+      "singleVisual": {
+       "visualType": "card",
+       "objects": {}
+      }
+     },
+     "forecastTileHit3": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "forecastTile4": {
+      "singleVisual": {
+       "visualType": "card",
+       "objects": {}
+      }
+     },
+     "forecastTileHit4": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "forecast_f27_bg": {
+      "singleVisual": {
+       "visualType": "image",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "forecast_f27_l": {
+      "singleVisual": {
+       "visualType": "lineChart",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "forecast_f27_t": {
+      "singleVisual": {
+       "visualType": "tableEx",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "forecast_f27_x": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "forecast_err_bg": {
+      "singleVisual": {
+       "visualType": "image",
+       "objects": {}
+      }
+     },
+     "forecast_err_m": {
+      "singleVisual": {
+       "visualType": "tableEx",
+       "objects": {}
+      }
+     },
+     "forecast_err_b": {
+      "singleVisual": {
+       "visualType": "tableEx",
+       "objects": {}
+      }
+     },
+     "forecast_err_n": {
+      "singleVisual": {
+       "visualType": "card",
+       "objects": {}
+      }
+     },
+     "forecast_err_a": {
+      "singleVisual": {
+       "visualType": "card",
+       "objects": {}
+      }
+     },
+     "forecast_err_x": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "forecast_ai_bg": {
+      "singleVisual": {
+       "visualType": "image",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "forecast_ai_panel": {
+      "singleVisual": {
+       "visualType": "egyptPulse8AAD5EB20DBA4B41B73872D4B222801B",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "forecast_ai_x": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,219 @@
+{
+ "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+ "displayName": "Company deep-dive · ai",
+ "name": "bmdeepdiveAiOn",
+ "options": {
+  "targetVisualNames": [
+   "deepdive_acc_bg",
+   "deepdive_acc_h",
+   "deepdive_acc_t",
+   "deepdive_acc_n",
+   "deepdive_acc_x",
+   "deepdive_ai_bg",
+   "deepdive_ai_panel",
+   "deepdive_ai_x"
+  ],
+  "suppressData": true,
+  "applyOnlyToTargetVisuals": true,
+  "suppressActiveSection": true
+ },
+ "explorationState": {
+  "version": "1.0",
+  "activeSection": "deepdive",
+  "sections": {
+   "deepdive": {
+    "visualContainers": {
+     "deepdiveBg": {
+      "singleVisual": {
+       "visualType": "image",
+       "objects": {}
+      }
+     },
+     "deepdiveNav0": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "deepdiveNav1": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "deepdiveNav2": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "deepdiveNav3": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "deepdiveAsk": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "deepdiveCompany": {
+      "singleVisual": {
+       "visualType": "advancedSlicerVisual",
+       "objects": {}
+      }
+     },
+     "ddPaths": {
+      "singleVisual": {
+       "visualType": "lineChart",
+       "objects": {}
+      }
+     },
+     "ddQuarters": {
+      "singleVisual": {
+       "visualType": "tableEx",
+       "objects": {}
+      }
+     },
+     "ddYears": {
+      "singleVisual": {
+       "visualType": "clusteredColumnChart",
+       "objects": {}
+      }
+     },
+     "deepdiveNotes": {
+      "singleVisual": {
+       "visualType": "egyptPulse8AAD5EB20DBA4B41B73872D4B222801B",
+       "objects": {}
+      }
+     },
+     "deepdiveTile0": {
+      "singleVisual": {
+       "visualType": "card",
+       "objects": {}
+      }
+     },
+     "deepdiveTileHit0": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "deepdiveTile1": {
+      "singleVisual": {
+       "visualType": "card",
+       "objects": {}
+      }
+     },
+     "deepdiveTileHit1": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "deepdiveTile2": {
+      "singleVisual": {
+       "visualType": "card",
+       "objects": {}
+      }
+     },
+     "deepdiveTileHit2": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "deepdiveTile3": {
+      "singleVisual": {
+       "visualType": "card",
+       "objects": {}
+      }
+     },
+     "deepdiveTileHit3": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "deepdiveTile4": {
+      "singleVisual": {
+       "visualType": "card",
+       "objects": {}
+      }
+     },
+     "deepdiveTileHit4": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "deepdive_acc_bg": {
+      "singleVisual": {
+       "visualType": "image",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "deepdive_acc_h": {
+      "singleVisual": {
+       "visualType": "clusteredColumnChart",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "deepdive_acc_t": {
+      "singleVisual": {
+       "visualType": "tableEx",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "deepdive_acc_n": {
+      "singleVisual": {
+       "visualType": "card",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "deepdive_acc_x": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "deepdive_ai_bg": {
+      "singleVisual": {
+       "visualType": "image",
+       "objects": {}
+      }
+     },
+     "deepdive_ai_panel": {
+      "singleVisual": {
+       "visualType": "egyptPulse8AAD5EB20DBA4B41B73872D4B222801B",
+       "objects": {}
+      }
+     },
+     "deepdive_ai_x": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     }
+    }
+   }
+  }
+ }
+}

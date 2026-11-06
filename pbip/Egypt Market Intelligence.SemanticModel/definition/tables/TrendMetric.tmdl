@@ -1,0 +1,33 @@
+table TrendMetric
+	lineageTag: 6022b303-01a3-5966-9876-b9ba76921240
+
+	column Metric
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Metric
+		sortByColumn: Ord
+		lineageTag: 1ac72710-5ad5-5b83-a5b7-f86de7841912
+
+		annotation SummarizationSetBy = User
+
+	column Ord
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Ord
+		lineageTag: 958c53e8-6de3-590a-89f2-0adaf32fdef5
+
+		annotation SummarizationSetBy = User
+
+	partition TrendMetric = m
+		mode: import
+		source =
+				let
+				    Bytes = if Text.StartsWith(XlsxPath, "http") then Web.Contents(XlsxPath) else File.Contents(XlsxPath),
+				    Source = Excel.Workbook(Bytes, null, true),
+				    Data = Source{[Item="TrendMetric",Kind="Sheet"]}[Data],
+				    Promoted = Table.PromoteHeaders(Data, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"Metric", type text}, {"Ord", Int64.Type}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,73 @@
+table Months
+	lineageTag: 70220f45-cd82-527d-a795-fd401098eddf
+
+	column Month
+		dataType: dateTime
+		formatString: mmm yyyy
+		summarizeBy: none
+		sourceColumn: Month
+		lineageTag: 6123a6cd-ad4f-5aa6-b096-39a4bb3d8882
+
+		annotation SummarizationSetBy = User
+
+	column Year
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Year
+		lineageTag: 7f2057d5-f310-5fa6-827b-33f7ee0cd4c1
+
+		annotation SummarizationSetBy = User
+
+	column MonthLabel
+		dataType: string
+		summarizeBy: none
+		sourceColumn: MonthLabel
+		lineageTag: c3bd8b57-1504-5695-86d5-8414c433ca81
+
+		annotation SummarizationSetBy = User
+
+	column EventCola
+		dataType: string
+		summarizeBy: none
+		sourceColumn: EventCola
+		lineageTag: 483cee2e-3390-5893-a3b8-5ed47af7435c
+
+		annotation SummarizationSetBy = User
+
+	column EventColaAR
+		dataType: string
+		summarizeBy: none
+		sourceColumn: EventColaAR
+		lineageTag: cdb3bf61-d2e2-5269-ac8f-299c17ac6774
+
+		annotation SummarizationSetBy = User
+
+	column EventApps
+		dataType: string
+		summarizeBy: none
+		sourceColumn: EventApps
+		lineageTag: a659db32-997a-5fa9-908a-c570fb2d1e90
+
+		annotation SummarizationSetBy = User
+
+	column EventAppsAR
+		dataType: string
+		summarizeBy: none
+		sourceColumn: EventAppsAR
+		lineageTag: b564465d-69f7-5b9e-925b-8fbec6c17127
+
+		annotation SummarizationSetBy = User
+
+	partition Months = m
+		mode: import
+		source =
+				let
+				    Bytes = if Text.StartsWith(XlsxPath, "http") then Web.Contents(XlsxPath) else File.Contents(XlsxPath),
+				    Source = Excel.Workbook(Bytes, null, true),
+				    Data = Source{[Item="Months",Kind="Sheet"]}[Data],
+				    Promoted = Table.PromoteHeaders(Data, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"Month", type date}, {"Year", Int64.Type}, {"MonthLabel", type text}, {"EventCola", type text}, {"EventColaAR", type text}, {"EventApps", type text}, {"EventAppsAR", type text}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,294 @@
+{
+ "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+ "displayName": "Where Egypt searches · leader",
+ "name": "bmsearchLeaderOn",
+ "options": {
+  "targetVisualNames": [
+   "search_leader_bg",
+   "search_leader_m",
+   "search_leader_t",
+   "search_leader_x",
+   "search_led_bg",
+   "search_led_t",
+   "search_led_x",
+   "search_urban_bg",
+   "search_urban_b",
+   "search_urban_k",
+   "search_urban_x",
+   "search_ai_bg",
+   "search_ai_panel",
+   "search_ai_x"
+  ],
+  "suppressData": true,
+  "applyOnlyToTargetVisuals": true,
+  "suppressActiveSection": true
+ },
+ "explorationState": {
+  "version": "1.0",
+  "activeSection": "search",
+  "sections": {
+   "search": {
+    "visualContainers": {
+     "searchBg": {
+      "singleVisual": {
+       "visualType": "image",
+       "objects": {}
+      }
+     },
+     "searchNav0": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "searchNav2": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "searchNav3": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "searchNav4": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "searchAsk": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "searchClear": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "searchCat": {
+      "singleVisual": {
+       "visualType": "slicer",
+       "objects": {}
+      }
+     },
+     "searchRegion": {
+      "singleVisual": {
+       "visualType": "slicer",
+       "objects": {}
+      }
+     },
+     "searchGov": {
+      "singleVisual": {
+       "visualType": "slicer",
+       "objects": {}
+      }
+     },
+     "searchMap": {
+      "singleVisual": {
+       "visualType": "egyptPulse8AAD5EB20DBA4B41B73872D4B222801B",
+       "objects": {}
+      }
+     },
+     "searchBrands": {
+      "singleVisual": {
+       "visualType": "barChart",
+       "objects": {}
+      }
+     },
+     "searchDrill": {
+      "singleVisual": {
+       "visualType": "clusteredBarChart",
+       "objects": {}
+      }
+     },
+     "searchNotes": {
+      "singleVisual": {
+       "visualType": "egyptPulse8AAD5EB20DBA4B41B73872D4B222801B",
+       "objects": {}
+      }
+     },
+     "searchTile0": {
+      "singleVisual": {
+       "visualType": "card",
+       "objects": {}
+      }
+     },
+     "searchTileHit0": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "searchTile1": {
+      "singleVisual": {
+       "visualType": "card",
+       "objects": {}
+      }
+     },
+     "searchTileHit1": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "searchTile2": {
+      "singleVisual": {
+       "visualType": "card",
+       "objects": {}
+      }
+     },
+     "searchTileHit2": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "searchTile3": {
+      "singleVisual": {
+       "visualType": "card",
+       "objects": {}
+      }
+     },
+     "searchTileHit3": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "searchTile4": {
+      "singleVisual": {
+       "visualType": "card",
+       "objects": {}
+      }
+     },
+     "searchTileHit4": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "search_leader_bg": {
+      "singleVisual": {
+       "visualType": "image",
+       "objects": {}
+      }
+     },
+     "search_leader_m": {
+      "singleVisual": {
+       "visualType": "pivotTable",
+       "objects": {}
+      }
+     },
+     "search_leader_t": {
+      "singleVisual": {
+       "visualType": "card",
+       "objects": {}
+      }
+     },
+     "search_leader_x": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "search_led_bg": {
+      "singleVisual": {
+       "visualType": "image",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "search_led_t": {
+      "singleVisual": {
+       "visualType": "tableEx",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "search_led_x": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "search_urban_bg": {
+      "singleVisual": {
+       "visualType": "image",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "search_urban_b": {
+      "singleVisual": {
+       "visualType": "clusteredBarChart",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "search_urban_k": {
+      "singleVisual": {
+       "visualType": "tableEx",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "search_urban_x": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "search_ai_bg": {
+      "singleVisual": {
+       "visualType": "image",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "search_ai_panel": {
+      "singleVisual": {
+       "visualType": "egyptPulse8AAD5EB20DBA4B41B73872D4B222801B",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "search_ai_x": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}

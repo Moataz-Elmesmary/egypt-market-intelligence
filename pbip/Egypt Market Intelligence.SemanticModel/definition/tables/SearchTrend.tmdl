@@ -1,0 +1,99 @@
+table SearchTrend
+	lineageTag: 463d95b2-52f7-5027-81b7-2f8b108dba1f
+
+	measure 'Search Interest' = SUM ( SearchTrend[Interest] )
+		formatString: 0
+		lineageTag: 1572c6ea-92ce-5cb1-b90f-5dbea53cd7db
+
+	measure 'Share of Search' =
+			VAR cat = SELECTEDVALUE ( Brand[Category] )
+			VAR b = CALCULATE ( SUM ( SearchTrend[Interest] ), SearchTrend[Last12M] = TRUE () )
+			VAR c = CALCULATE ( SUM ( SearchTrend[Interest] ), SearchTrend[Last12M] = TRUE (), REMOVEFILTERS ( Brand ), Brand[Category] = cat )
+			RETURN DIVIDE ( b, c )
+		formatString: 0.0%
+		lineageTag: a1d113e2-825e-51fb-9932-4e4df01dfb7e
+
+	measure 'Interest 2021' = CALCULATE ( AVERAGE ( SearchTrend[Interest] ), YEAR ( SearchTrend[Month] ) = 2021 )
+		formatString: 0.0
+		lineageTag: ca6b8261-f3c4-54fe-bcc3-c640169a6b19
+
+	measure 'Interest Last 12M' = CALCULATE ( AVERAGE ( SearchTrend[Interest] ), SearchTrend[Last12M] = TRUE () )
+		formatString: 0.0
+		lineageTag: 74554a5b-26f0-5199-98f3-adb8195b64b0
+
+	measure Event =
+			VAR c = SELECTEDVALUE ( Brand[Category] )
+			RETURN SWITCH ( c, "Soft drinks", SELECTEDVALUE ( Months[EventCola] ), "Delivery apps", SELECTEDVALUE ( Months[EventApps] ) )
+		lineageTag: abef3159-ab7e-5ca4-bed9-dfae210bd0c1
+
+	measure 'Brand Color' = SELECTEDVALUE ( Brand[Tone], "#0B6E69" )
+		lineageTag: ebf02289-06bd-55c6-be41-4949e0f89943
+
+	measure 'Breadfast Interest' = CALCULATE ( [Search Interest], Brand[Brand] = "Breadfast" )
+		formatString: 0
+		lineageTag: 146ea735-d4b9-55eb-83dd-4c4b2befe86c
+
+	measure 'Trend Value' =
+			VAR m = SELECTEDVALUE ( 'TrendMetric'[Ord], 1 )
+			VAR base2021 = CALCULATE ( AVERAGE ( SearchTrend[Interest] ), REMOVEFILTERS ( Months ), YEAR ( SearchTrend[Month] ) = 2021 )
+			RETURN SWITCH ( m,
+			    1, [Search Interest],
+			    2, DIVIDE ( [Search Interest], base2021 ) * 100,
+			    3, DIVIDE ( [Search Interest], CALCULATE ( [Search Interest], ALLEXCEPT ( Brand, Brand[Category] ) ) ) * 100 )
+		formatString: 0
+		lineageTag: e072a68f-9cee-5248-bb20-9273c1b812e2
+
+	column Month
+		dataType: dateTime
+		formatString: mmm yyyy
+		summarizeBy: none
+		sourceColumn: Month
+		lineageTag: 5802cf5f-9424-5f4b-a0bb-e6fa7ec32e6f
+
+		annotation SummarizationSetBy = User
+
+	column Brand
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Brand
+		lineageTag: ed3ad865-c9cb-5b8d-b841-63e5532bd7a1
+
+		annotation SummarizationSetBy = User
+
+	column Category
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Category
+		lineageTag: 545e9c38-77c5-5e05-a59c-414c8a6a4755
+
+		annotation SummarizationSetBy = User
+
+	column Interest
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Interest
+		lineageTag: 1fe07414-6c39-5084-8417-9107bac0fd6a
+
+		annotation SummarizationSetBy = User
+
+	column Last12M
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: Last12M
+		lineageTag: 6ceea76f-a008-5740-ba0b-359f719e034c
+
+		annotation SummarizationSetBy = User
+
+	partition SearchTrend = m
+		mode: import
+		source =
+				let
+				    Bytes = if Text.StartsWith(XlsxPath, "http") then Web.Contents(XlsxPath) else File.Contents(XlsxPath),
+				    Source = Excel.Workbook(Bytes, null, true),
+				    Data = Source{[Item="SearchTrend",Kind="Sheet"]}[Data],
+				    Promoted = Table.PromoteHeaders(Data, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"Month", type date}, {"Brand", type text}, {"Category", type text}, {"Interest", Int64.Type}, {"Last12M", type logical}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

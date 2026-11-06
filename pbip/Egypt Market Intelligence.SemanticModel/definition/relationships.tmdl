@@ -1,0 +1,31 @@
+relationship 14bacc0b-3c6f-5722-a9f0-c8a7dc1ae998
+	fromColumn: SearchTrend.Brand
+	toColumn: Brand.Brand
+
+relationship 4cf3c0b9-bd9b-5efe-b076-139db3a550a2
+	fromColumn: SearchTrend.Month
+	toColumn: Months.Month
+
+relationship f787b8bf-bce5-5559-98ad-d88d88191f2b
+	fromColumn: SearchGeo.Brand
+	toColumn: Brand.Brand
+
+relationship 1e7180c7-f16b-5184-ab7e-7a5802aee35b
+	fromColumn: SearchGeo.GovCode
+	toColumn: Governorate.GovCode
+
+relationship 8b01838b-fcb7-54c3-8453-c71fb3f5a1bd
+	fromColumn: Revenue_Q.Company
+	toColumn: Company.Company
+
+relationship cd24073b-d10f-5357-9104-ff05e32fce55
+	fromColumn: Revenue_FY.Company
+	toColumn: Company.Company
+
+relationship 89f65b60-e89c-5c0d-b73b-2b463470d4cd
+	fromColumn: Models.Company
+	toColumn: Company.Company
+
+relationship 803c447e-92ae-5c49-a4fe-79e53a49334c
+	fromColumn: Backtest.Company
+	toColumn: Company.Company

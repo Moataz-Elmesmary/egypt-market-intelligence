@@ -1,0 +1,265 @@
+table Revenue_Q
+	lineageTag: f7edf3f7-3938-5b2b-9825-f6de8e934240
+
+	measure 'Actual (EGP M)' = SUM ( Revenue_Q[RevenueEGP] )
+		formatString: #,0
+		lineageTag: 2e92b82f-e872-5a9e-81e9-af967eb07a19
+
+	measure 'Ensemble Forecast' = SUM ( Revenue_Q[ForecastEGP] )
+		formatString: #,0
+		lineageTag: e2b9f33a-3bb0-52ad-bd44-d242b5d131dd
+
+	measure 'Low 80%' = SUM ( Revenue_Q[Lo80] )
+		formatString: #,0
+		lineageTag: 24b1a6a0-b0cf-552a-8ad8-68cea1955662
+
+	measure 'High 80%' = SUM ( Revenue_Q[Hi80] )
+		formatString: #,0
+		lineageTag: f6c7aca2-b059-58f3-9138-6d18f11b5ab0
+
+	measure 'Backtest (EGP M)' = SUM ( Revenue_Q[BacktestEGP] )
+		formatString: #,0
+		lineageTag: 36a315a2-972b-5f42-8224-bfc23f21270e
+
+	measure 'Real (2021 prices)' = SUM ( Revenue_Q[RealEGP] )
+		formatString: #,0
+		lineageTag: 400b04c1-10e0-5b61-be96-ee4b01184d50
+
+	measure 'Forecast Low' = SUM ( Revenue_Q[ForecastLow] )
+		formatString: #,0
+		lineageTag: 7c13be2a-66c4-5505-b64a-81f5cecc33f5
+
+	measure 'Forecast High' = SUM ( Revenue_Q[ForecastHigh] )
+		formatString: #,0
+		lineageTag: d432f5fc-f603-5f68-866e-6892e229070e
+
+	measure 'Scenario Forecast' = SWITCH ( SELECTEDVALUE ( 'Scenario'[Ord], 2 ), 1, [Forecast Low], 3, [Forecast High], [Ensemble Forecast] )
+		formatString: #,0
+		lineageTag: fd060b1e-82ad-588c-be93-093c7da11edc
+
+	measure 'Scenario 2027 (EGP B)' = DIVIDE ( CALCULATE ( [Scenario Forecast], Revenue_Q[Year] = 2027 ), 1000 )
+		formatString: 0.0
+		lineageTag: 31d6237a-0551-530d-9b99-8c436a91a4e2
+
+	measure 'Actual (backtest quarters)' = IF ( NOT ISBLANK ( [Backtest (EGP M)] ), [Actual (EGP M)] )
+		formatString: #,0
+		lineageTag: 5dc23fbc-487a-5e52-954a-a734aceedb6f
+
+	measure 'Backtest Error' = DIVIDE ( [Backtest (EGP M)] - [Actual (backtest quarters)], [Actual (backtest quarters)] )
+		formatString: +0.0%;-0.0%
+		lineageTag: fd059f54-7031-571c-acc8-2624afb59b05
+
+	measure 'Seasonal naive path' = SUM ( Revenue_Q[Seasonal naive] )
+		formatString: #,0
+		lineageTag: c496db18-7f3b-5441-8031-db677c76cb54
+
+	measure 'Naive + drift path' = SUM ( Revenue_Q[Seasonal naive + drift] )
+		formatString: #,0
+		lineageTag: 78fde3a5-70c6-5fc2-8901-93600ba1ff05
+
+	measure 'Holt-Winters path' = SUM ( Revenue_Q[Holt-Winters (ETS)] )
+		formatString: #,0
+		lineageTag: b03a71db-a74b-537b-8395-45bb2421d4d5
+
+	measure 'Theta path' = SUM ( Revenue_Q[Theta] )
+		formatString: #,0
+		lineageTag: 6ff36ea6-e63e-5bd2-a63a-41c321c5bcc2
+
+	measure 'SARIMA path' = SUM ( Revenue_Q[SARIMA] )
+		formatString: #,0
+		lineageTag: 55206521-cff0-58d4-8144-d864ee154294
+
+	measure 'OLS path' = SUM ( Revenue_Q[Trend + season OLS] )
+		formatString: #,0
+		lineageTag: 6c381078-a5dc-5311-8e1f-06d03b1d6779
+
+	column Company
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Company
+		lineageTag: cc1b31c9-e2a4-5e92-a5f5-5cf2a8c3431a
+
+		annotation SummarizationSetBy = User
+
+	column Quarter
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Quarter
+		lineageTag: 9a1795e7-f276-54b6-8b68-b149d839eb11
+
+		annotation SummarizationSetBy = User
+
+	column QuarterEnd
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		summarizeBy: none
+		sourceColumn: QuarterEnd
+		lineageTag: 68f28dd5-5d6b-515c-8d1c-1cfd081f17ad
+
+		annotation SummarizationSetBy = User
+
+	column Year
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Year
+		lineageTag: 045ff72f-d538-5fab-9552-26ffbe63a7d0
+
+		annotation SummarizationSetBy = User
+
+	column RevenueEGP
+		dataType: double
+		summarizeBy: none
+		sourceColumn: RevenueEGP
+		lineageTag: 593e3a86-0de9-551f-8171-efef504e5b74
+
+		annotation SummarizationSetBy = User
+
+	column BacktestEGP
+		dataType: double
+		summarizeBy: none
+		sourceColumn: BacktestEGP
+		lineageTag: 4d4926ec-86c8-5ccb-b0fd-8778f356b558
+
+		annotation SummarizationSetBy = User
+
+	column ForecastEGP
+		dataType: double
+		summarizeBy: none
+		sourceColumn: ForecastEGP
+		lineageTag: ce6a9739-77fc-5c17-a1c3-12330818922c
+
+		annotation SummarizationSetBy = User
+
+	column Lo80
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Lo80
+		lineageTag: 32f0e1dd-47d7-51dc-aaa1-99332b70ec1d
+
+		annotation SummarizationSetBy = User
+
+	column Hi80
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Hi80
+		lineageTag: 1658e5c4-b351-5657-ab59-9bd78a029c7f
+
+		annotation SummarizationSetBy = User
+
+	column FX
+		dataType: double
+		summarizeBy: none
+		sourceColumn: FX
+		lineageTag: 06b4586a-9e16-57fe-bbd5-d41b4d245397
+
+		annotation SummarizationSetBy = User
+
+	column ActualUSD
+		dataType: double
+		summarizeBy: none
+		sourceColumn: ActualUSD
+		lineageTag: 81d1e34e-52bd-56e6-adfc-96301814746e
+
+		annotation SummarizationSetBy = User
+
+	column ForecastUSD
+		dataType: double
+		summarizeBy: none
+		sourceColumn: ForecastUSD
+		lineageTag: 51cc4cde-e218-51e2-b10e-61cfd8fc4677
+
+		annotation SummarizationSetBy = User
+
+	column 'Seasonal naive'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Seasonal naive
+		lineageTag: 2e25b61e-5b5a-5dec-8431-b0c0cec3b26e
+
+		annotation SummarizationSetBy = User
+
+	column 'Seasonal naive + drift'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Seasonal naive + drift
+		lineageTag: 602ee081-1138-575f-9258-646b846ddb5b
+
+		annotation SummarizationSetBy = User
+
+	column 'Holt-Winters (ETS)'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Holt-Winters (ETS)
+		lineageTag: 90d21a4c-45f5-5de4-a7ad-394f2814d02e
+
+		annotation SummarizationSetBy = User
+
+	column Theta
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Theta
+		lineageTag: 9f4878e7-ba02-5886-aaf8-c0a83034cd29
+
+		annotation SummarizationSetBy = User
+
+	column SARIMA
+		dataType: double
+		summarizeBy: none
+		sourceColumn: SARIMA
+		lineageTag: a84597c4-6b8a-52a1-926b-a972910c31fc
+
+		annotation SummarizationSetBy = User
+
+	column 'Trend + season OLS'
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Trend + season OLS
+		lineageTag: 4a5f7528-96ff-5282-844c-f69fb539d065
+
+		annotation SummarizationSetBy = User
+
+	column CPI
+		dataType: double
+		summarizeBy: none
+		sourceColumn: CPI
+		lineageTag: 7c74b094-dd7a-5964-9bde-d476deaee865
+
+		annotation SummarizationSetBy = User
+
+	column RealEGP
+		dataType: double
+		summarizeBy: none
+		sourceColumn: RealEGP
+		lineageTag: 2ddb0975-cf56-514c-9d5c-0758fc1b3e63
+
+		annotation SummarizationSetBy = User
+
+	column ForecastLow
+		dataType: double
+		summarizeBy: none
+		sourceColumn: ForecastLow
+		lineageTag: 8ef4e640-6493-52e9-a8fa-5f1f70f9c883
+
+		annotation SummarizationSetBy = User
+
+	column ForecastHigh
+		dataType: double
+		summarizeBy: none
+		sourceColumn: ForecastHigh
+		lineageTag: cc292776-7846-53cc-b0a4-6e37f220738e
+
+		annotation SummarizationSetBy = User
+
+	partition Revenue_Q = m
+		mode: import
+		source =
+				let
+				    Bytes = if Text.StartsWith(XlsxPath, "http") then Web.Contents(XlsxPath) else File.Contents(XlsxPath),
+				    Source = Excel.Workbook(Bytes, null, true),
+				    Data = Source{[Item="Revenue_Q",Kind="Sheet"]}[Data],
+				    Promoted = Table.PromoteHeaders(Data, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"Company", type text}, {"Quarter", type text}, {"QuarterEnd", type date}, {"Year", Int64.Type}, {"RevenueEGP", type number}, {"BacktestEGP", type number}, {"ForecastEGP", type number}, {"Lo80", type number}, {"Hi80", type number}, {"FX", type number}, {"ActualUSD", type number}, {"ForecastUSD", type number}, {"Seasonal naive", type number}, {"Seasonal naive + drift", type number}, {"Holt-Winters (ETS)", type number}, {"Theta", type number}, {"SARIMA", type number}, {"Trend + season OLS", type number}, {"CPI", type number}, {"RealEGP", type number}, {"ForecastLow", type number}, {"ForecastHigh", type number}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

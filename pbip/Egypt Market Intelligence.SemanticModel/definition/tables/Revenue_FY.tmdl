@@ -1,0 +1,64 @@
+table Revenue_FY
+	lineageTag: a52e6a40-7833-5e50-808b-5679f5e532c1
+
+	column Company
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Company
+		lineageTag: 5e9f52a3-3d94-559b-9d26-41d3b03c0149
+
+		annotation SummarizationSetBy = User
+
+	column Year
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Year
+		lineageTag: e0285acd-53a7-55a0-ac6f-a76e54746f64
+
+		annotation SummarizationSetBy = User
+
+	column RevenueEGP
+		dataType: double
+		summarizeBy: none
+		sourceColumn: RevenueEGP
+		lineageTag: ebbe099d-a5e4-5fbd-9940-202c9345bfbf
+
+		annotation SummarizationSetBy = User
+
+	column FX
+		dataType: double
+		summarizeBy: none
+		sourceColumn: FX
+		lineageTag: 00be67d8-0df1-54ee-b82a-20e68fa3d471
+
+		annotation SummarizationSetBy = User
+
+	column Basis
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Basis
+		lineageTag: c6f5f83f-a705-56b5-b838-601289f6daab
+
+		annotation SummarizationSetBy = User
+
+	column RevenueUSD
+		dataType: double
+		summarizeBy: none
+		sourceColumn: RevenueUSD
+		lineageTag: 83466c5f-587f-5662-85a2-3b5da08ec1b8
+
+		annotation SummarizationSetBy = User
+
+	partition Revenue_FY = m
+		mode: import
+		source =
+				let
+				    Bytes = if Text.StartsWith(XlsxPath, "http") then Web.Contents(XlsxPath) else File.Contents(XlsxPath),
+				    Source = Excel.Workbook(Bytes, null, true),
+				    Data = Source{[Item="Revenue_FY",Kind="Sheet"]}[Data],
+				    Promoted = Table.PromoteHeaders(Data, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"Company", type text}, {"Year", Int64.Type}, {"RevenueEGP", type number}, {"FX", type number}, {"Basis", type text}, {"RevenueUSD", type number}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

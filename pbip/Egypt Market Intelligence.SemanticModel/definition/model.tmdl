@@ -1,0 +1,30 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["XlsxPath", "Brand", "Governorate", "Months", "SearchTrend", "SearchGeo", "Revenue_Q", "TrendMetric", "Company", "Backtest", "Scenario", "Revenue_FY", "Models", "KPI", "Insight", "Notes", "Knowledge", "Sources", "Feed"]
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+ref table Brand
+ref table Governorate
+ref table Months
+ref table SearchTrend
+ref table SearchGeo
+ref table Revenue_Q
+ref table TrendMetric
+ref table Company
+ref table Backtest
+ref table Scenario
+ref table Revenue_FY
+ref table Models
+ref table KPI
+ref table Insight
+ref table Notes
+ref table Knowledge
+ref table Sources
+ref table Feed

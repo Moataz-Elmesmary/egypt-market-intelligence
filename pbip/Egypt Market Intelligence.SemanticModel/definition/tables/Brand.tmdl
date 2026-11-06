@@ -1,0 +1,167 @@
+table Brand
+	lineageTag: ce665d30-afcd-52a7-bdea-de2a58dc7532
+
+	measure 'Category Leader' =
+			VAR t = ADDCOLUMNS ( VALUES ( Brand[Brand] ), "@s", [Share of Search] )
+			RETURN MAXX ( TOPN ( 1, t, [@s], DESC ), Brand[Brand] )
+		lineageTag: aa02c5fb-7704-5560-9ac9-75ae611beecb
+
+	measure 'Leader National Share' = MAXX ( VALUES ( Brand[Brand] ), [Share of Search] )
+		formatString: 0.0%
+		lineageTag: 0d3eeeca-14d2-50c1-8bf5-655af3b8ffbd
+
+	measure 'Governorates Led' =
+			VAR top1 = [Category Leader]
+			RETURN COUNTROWS ( FILTER ( VALUES ( Governorate[GovCode] ), [Leader] = top1 ) ) & " of 27"
+		lineageTag: 46604620-f1c7-5778-9831-5f96f2397ace
+
+	measure 'Search Growth' = DIVIDE ( [Interest Last 12M], [Interest 2021] )
+		formatString: 0.0
+		lineageTag: 76232996-6715-5a5c-95bf-c82e6262c91b
+
+	measure 'Category Leader Color' = LOOKUPVALUE ( Brand[Tone], Brand[Brand], [Category Leader] )
+		lineageTag: 1d43c43a-2418-5518-b21d-5d6464954227
+
+	measure 'Category Runner' =
+			VAR t = ADDCOLUMNS ( VALUES ( Brand[Brand] ), "@s", [Share of Search] )
+			RETURN MINX ( TOPN ( 1, TOPN ( 2, t, [@s], DESC ), [@s], ASC ), Brand[Brand] )
+		lineageTag: e8a97c5d-a47e-5d85-947c-c103c6450431
+
+	measure 'Fastest Grower' =
+			VAR t = FILTER ( ADDCOLUMNS ( VALUES ( Brand[Brand] ), "@g", [Search Growth] ), NOT ISBLANK ( [@g] ) )
+			RETURN MAXX ( TOPN ( 1, t, [@g], DESC ), Brand[Brand] ) & " · " & FORMAT ( MAXX ( t, [@g] ), "0.0" ) & "x"
+		lineageTag: ef397069-6ae6-54b3-98be-722ac815d3f1
+
+	measure 'Search Insight' =
+			VAR s = [Leader National Share]
+			RETURN [Category Leader] & " holds " & FORMAT ( s, "0%" ) & " of Google searches in its category over the last 12 months and leads "
+			    & [Governorates Led] & " governorates; " & [Category Runner] & " is the runner-up. Search share measures attention, not sales."
+		lineageTag: e424e0bb-8dfc-5e8e-8a7f-c1c77b68cb86
+
+	column Brand
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Brand
+		sortByColumn: Sort
+		lineageTag: e9de3e42-ac22-56ae-817a-29c0f5545340
+
+		annotation SummarizationSetBy = User
+
+	column BrandAR
+		dataType: string
+		summarizeBy: none
+		sourceColumn: BrandAR
+		lineageTag: 75d502b1-f262-5f15-9ccf-4f68bfff5033
+
+		annotation SummarizationSetBy = User
+
+	column Category
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Category
+		sortByColumn: CategorySort
+		lineageTag: 92cfa913-d9f2-529e-bbd1-efc15e2b42e7
+
+		annotation SummarizationSetBy = User
+
+	column Company
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Company
+		lineageTag: e0b02e62-d3f9-55f9-99fd-4f024925ff1a
+
+		annotation SummarizationSetBy = User
+
+	column Origin
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Origin
+		lineageTag: 53f5fb80-bed0-5e92-9ad5-a9dfa8b34fce
+
+		annotation SummarizationSetBy = User
+
+	column Color
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Color
+		lineageTag: 26af0d90-0c65-5df7-91f0-9d4476b42410
+
+		annotation SummarizationSetBy = User
+
+	column Shape
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Shape
+		lineageTag: 53af6e20-59fe-5025-b2ae-ef982764c46e
+
+		annotation SummarizationSetBy = User
+
+	column Sort
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Sort
+		lineageTag: 2a5b5ac7-c585-591c-87e3-c9afe75a919e
+
+		annotation SummarizationSetBy = User
+
+	column CategoryAR
+		dataType: string
+		summarizeBy: none
+		sourceColumn: CategoryAR
+		lineageTag: 16cd1815-91ba-533f-8798-627a9d9f4d5b
+
+		annotation SummarizationSetBy = User
+
+	column ShareOfSearch12M
+		dataType: double
+		summarizeBy: none
+		sourceColumn: ShareOfSearch12M
+		lineageTag: 3a0bb1b5-792d-5cff-9528-27fb74cbe5ab
+
+		annotation SummarizationSetBy = User
+
+	column Interest2021
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Interest2021
+		lineageTag: ba49d0a2-c7c9-5d43-bc48-76a1a84cb2b1
+
+		annotation SummarizationSetBy = User
+
+	column InterestLast12M
+		dataType: double
+		summarizeBy: none
+		sourceColumn: InterestLast12M
+		lineageTag: 7383cf36-725f-547f-9aac-9a9fb36b580a
+
+		annotation SummarizationSetBy = User
+
+	column CategorySort
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: CategorySort
+		lineageTag: 88b7e0c0-9e84-53b6-8fab-5366d4ea5703
+
+		annotation SummarizationSetBy = User
+
+	column Tone
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Tone
+		lineageTag: bfdf420f-5441-5e12-bd26-c3c8f866da5a
+
+		annotation SummarizationSetBy = User
+
+	partition Brand = m
+		mode: import
+		source =
+				let
+				    Bytes = if Text.StartsWith(XlsxPath, "http") then Web.Contents(XlsxPath) else File.Contents(XlsxPath),
+				    Source = Excel.Workbook(Bytes, null, true),
+				    Data = Source{[Item="Brand",Kind="Sheet"]}[Data],
+				    Promoted = Table.PromoteHeaders(Data, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"Brand", type text}, {"BrandAR", type text}, {"Category", type text}, {"Company", type text}, {"Origin", type text}, {"Color", type text}, {"Shape", type text}, {"Sort", Int64.Type}, {"CategoryAR", type text}, {"ShareOfSearch12M", type number}, {"Interest2021", type number}, {"InterestLast12M", type number}, {"CategorySort", Int64.Type}, {"Tone", type text}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

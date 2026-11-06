@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Egypt Market Intelligence"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "fa351e83-276f-5db3-966d-57d6fce704e4"
+  }
+}

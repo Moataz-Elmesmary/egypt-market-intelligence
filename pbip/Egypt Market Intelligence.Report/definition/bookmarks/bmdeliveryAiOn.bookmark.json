@@ -1,0 +1,277 @@
+{
+ "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+ "displayName": "Delivery apps · ai",
+ "name": "bmdeliveryAiOn",
+ "options": {
+  "targetVisualNames": [
+   "delivery_talabat_bg",
+   "delivery_talabat_b",
+   "delivery_talabat_k",
+   "delivery_talabat_x",
+   "delivery_breadfast_bg",
+   "delivery_breadfast_l",
+   "delivery_breadfast_b",
+   "delivery_breadfast_t",
+   "delivery_breadfast_x",
+   "delivery_ai_bg",
+   "delivery_ai_panel",
+   "delivery_ai_x"
+  ],
+  "suppressData": true,
+  "applyOnlyToTargetVisuals": true,
+  "suppressActiveSection": true
+ },
+ "explorationState": {
+  "version": "1.0",
+  "activeSection": "delivery",
+  "sections": {
+   "delivery": {
+    "visualContainers": {
+     "deliveryBg": {
+      "singleVisual": {
+       "visualType": "image",
+       "objects": {}
+      }
+     },
+     "deliveryNav0": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "deliveryNav1": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "deliveryNav3": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "deliveryNav4": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "deliveryAsk": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "deliveryClear": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "dlvBrand": {
+      "singleVisual": {
+       "visualType": "slicer",
+       "objects": {}
+      }
+     },
+     "dlvYear": {
+      "singleVisual": {
+       "visualType": "slicer",
+       "objects": {}
+      }
+     },
+     "dlvMetric": {
+      "singleVisual": {
+       "visualType": "slicer",
+       "objects": {}
+      }
+     },
+     "dlvTrend": {
+      "singleVisual": {
+       "visualType": "lineChart",
+       "objects": {}
+      }
+     },
+     "dlvMomentum": {
+      "singleVisual": {
+       "visualType": "tableEx",
+       "objects": {}
+      }
+     },
+     "dlvShare": {
+      "singleVisual": {
+       "visualType": "barChart",
+       "objects": {}
+      }
+     },
+     "deliveryNotes": {
+      "singleVisual": {
+       "visualType": "egyptPulse8AAD5EB20DBA4B41B73872D4B222801B",
+       "objects": {}
+      }
+     },
+     "deliveryTile0": {
+      "singleVisual": {
+       "visualType": "card",
+       "objects": {}
+      }
+     },
+     "deliveryTileHit0": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "deliveryTile1": {
+      "singleVisual": {
+       "visualType": "card",
+       "objects": {}
+      }
+     },
+     "deliveryTileHit1": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "deliveryTile2": {
+      "singleVisual": {
+       "visualType": "card",
+       "objects": {}
+      }
+     },
+     "deliveryTileHit2": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "deliveryTile3": {
+      "singleVisual": {
+       "visualType": "card",
+       "objects": {}
+      }
+     },
+     "deliveryTileHit3": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "deliveryTile4": {
+      "singleVisual": {
+       "visualType": "card",
+       "objects": {}
+      }
+     },
+     "deliveryTileHit4": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     },
+     "delivery_talabat_bg": {
+      "singleVisual": {
+       "visualType": "image",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "delivery_talabat_b": {
+      "singleVisual": {
+       "visualType": "clusteredBarChart",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "delivery_talabat_k": {
+      "singleVisual": {
+       "visualType": "tableEx",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "delivery_talabat_x": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "delivery_breadfast_bg": {
+      "singleVisual": {
+       "visualType": "image",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "delivery_breadfast_l": {
+      "singleVisual": {
+       "visualType": "lineChart",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "delivery_breadfast_b": {
+      "singleVisual": {
+       "visualType": "clusteredBarChart",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "delivery_breadfast_t": {
+      "singleVisual": {
+       "visualType": "card",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "delivery_breadfast_x": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {},
+       "display": {
+        "mode": "hidden"
+       }
+      }
+     },
+     "delivery_ai_bg": {
+      "singleVisual": {
+       "visualType": "image",
+       "objects": {}
+      }
+     },
+     "delivery_ai_panel": {
+      "singleVisual": {
+       "visualType": "egyptPulse8AAD5EB20DBA4B41B73872D4B222801B",
+       "objects": {}
+      }
+     },
+     "delivery_ai_x": {
+      "singleVisual": {
+       "visualType": "actionButton",
+       "objects": {}
+      }
+     }
+    }
+   }
+  }
+ }
+}

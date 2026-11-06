@@ -1,0 +1,4 @@
+expression XlsxPath = "https://raw.githubusercontent.com/Moataz-Elmesmary/egypt-market-intelligence/main/data/Egypt_Market_Intelligence_2026.xlsx" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 5620a79c-58bc-51a4-9e05-22c8def085e4
+
+	annotation PBI_ResultType = Text

@@ -1,0 +1,71 @@
+table Models
+	lineageTag: 898d6334-b262-52e8-8458-9ff79ebca16c
+
+	measure 'Holdout Error' = DIVIDE ( SUM ( 'Models'[MAPE_Holdout] ), 100 )
+		formatString: 0.0%
+		lineageTag: d1b2ac8b-9715-5ca7-85db-c23d86548588
+
+	measure 'Selection Error' = DIVIDE ( SUM ( 'Models'[MAPE_Select] ), 100 )
+		formatString: 0.0%
+		lineageTag: 770b97e6-3588-53b1-92fc-c278f6ae2c07
+
+	measure 'Ensemble Weight' = SUM ( 'Models'[Weight] )
+		formatString: 0%
+		lineageTag: 0ef5e51d-d8c8-5a64-aa7b-19c3579e837f
+
+	column Company
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Company
+		lineageTag: 1daf6379-878e-5479-934d-55b8e6d9ccc8
+
+		annotation SummarizationSetBy = User
+
+	column Model
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Model
+		lineageTag: 575519a0-01e4-5367-92e5-1858726f69c7
+
+		annotation SummarizationSetBy = User
+
+	column MAPE_Select
+		dataType: double
+		formatString: 0.00
+		summarizeBy: none
+		sourceColumn: MAPE_Select
+		lineageTag: 53423339-5ac5-550d-8acd-2bd5b2d2bdff
+
+		annotation SummarizationSetBy = User
+
+	column MAPE_Holdout
+		dataType: double
+		formatString: 0.00
+		summarizeBy: none
+		sourceColumn: MAPE_Holdout
+		lineageTag: 7439a850-a285-5153-91f3-010bfd2c4946
+
+		annotation SummarizationSetBy = User
+
+	column Weight
+		dataType: double
+		formatString: 0%
+		summarizeBy: none
+		sourceColumn: Weight
+		lineageTag: 606f470d-f426-5c7a-8012-09d864c51ef5
+
+		annotation SummarizationSetBy = User
+
+	partition Models = m
+		mode: import
+		source =
+				let
+				    Bytes = if Text.StartsWith(XlsxPath, "http") then Web.Contents(XlsxPath) else File.Contents(XlsxPath),
+				    Source = Excel.Workbook(Bytes, null, true),
+				    Data = Source{[Item="Models",Kind="Sheet"]}[Data],
+				    Promoted = Table.PromoteHeaders(Data, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"Company", type text}, {"Model", type text}, {"MAPE_Select", type number}, {"MAPE_Holdout", type number}, {"Weight", type number}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,17 @@
+{
+		"version": "1.0.0.0",
+		"author": {"name":"Moataz Elmesmary","email":"moataz.mesmary@gmail.com"},
+		"resources": [
+			{
+				"resourceId": "rId0",
+				"sourceType": 5,
+				"file": "resources/egyptPulse8AAD5EB20DBA4B41B73872D4B222801B.pbiviz.json"
+			}
+		],
+		"visual": {"name":"egyptPulse","displayName":"Egypt Market","guid":"egyptPulse8AAD5EB20DBA4B41B73872D4B222801B","visualClassName":"Visual","version":"1.0.0.0","description":"Egypt Market Intelligence: a portal page, governorate map, forecast chart, numbered insight notes and a bilingual Ask AI chat that answers from the report's own semantic model.","supportUrl":"https://github.com/Moataz-Elmesmary/egypt-market-intelligence/issues","gitHubUrl":"https://github.com/Moataz-Elmesmary/egypt-market-intelligence"},
+		"metadata": {
+			"pbivizjson": {
+				"resourceId": "rId0"
+			}
+		}
+	}

@@ -1,0 +1,100 @@
+table SearchGeo
+	lineageTag: 8c1fc5a2-69d7-5e3e-8a0b-58c1196fe8b7
+
+	measure 'Geo Share' = AVERAGE ( SearchGeo[Share] )
+		formatString: 0%
+		lineageTag: 105a63f7-7c9e-599b-8dff-b16fb44880c7
+
+	measure 'Leader Share' = MAXX ( VALUES ( Brand[Brand] ), [Geo Share] )
+		formatString: 0%
+		lineageTag: e7a665c4-75c9-5664-9d2a-acb7aa408f20
+
+	measure Leader =
+			VAR t = FILTER ( ADDCOLUMNS ( VALUES ( Brand[Brand] ), "@s", [Geo Share] ), NOT ISBLANK ( [@s] ) )
+			RETURN MAXX ( TOPN ( 1, t, [@s], DESC ), Brand[Brand] )
+		lineageTag: 09c5d07d-b480-5957-9a11-20b6e428bc01
+
+	measure 'Leader Color' = LOOKUPVALUE ( Brand[Tone], Brand[Brand], [Leader] )
+		lineageTag: 383714b7-a8d8-5854-941c-8673e40ab040
+
+	measure 'Runner Share' =
+			VAR t = ADDCOLUMNS ( VALUES ( Brand[Brand] ), "@s", [Geo Share] )
+			VAR best = MAXX ( t, [@s] )
+			RETURN MAXX ( FILTER ( t, [@s] < best ), [@s] )
+		formatString: 0%
+		lineageTag: e64da17b-400c-5064-aae3-705c91ad64b4
+
+	measure 'Runner Up' =
+			VAR t = ADDCOLUMNS ( VALUES ( Brand[Brand] ), "@s", [Geo Share] )
+			VAR r = [Runner Share]
+			RETURN MAXX ( FILTER ( t, [@s] = r ), Brand[Brand] )
+		lineageTag: 418d02a5-7c22-507c-8340-08223d195044
+
+	measure 'Focus Brand' = IF ( HASONEVALUE ( Brand[Brand] ), VALUES ( Brand[Brand] ) )
+		lineageTag: e74a6fc5-7c6e-5161-9b0e-2193a5700a5a
+
+	measure 'Focus Share' = IF ( HASONEVALUE ( Brand[Brand] ), [Geo Share] )
+		formatString: 0%
+		lineageTag: efbacc4d-1730-5456-b1a7-9ea661dbe3b9
+
+	measure 'Focus Color' = IF ( HASONEVALUE ( Brand[Brand] ), VALUES ( Brand[Tone] ) )
+		lineageTag: d5f4365d-c845-5015-8a47-0e302290cf3d
+
+	measure 'Lead Margin' = [Leader Share] - [Runner Share]
+		formatString: +0%;-0%
+		lineageTag: 7916c0b7-20bc-501e-8f7b-9fd4d6d4adf4
+
+	measure 'talabat Share' = CALCULATE ( [Geo Share], Brand[Brand] = "talabat" )
+		formatString: 0%
+		lineageTag: c9947c0b-0a7a-5437-98c8-a1473790419b
+
+	measure 'Breadfast Share' = CALCULATE ( [Geo Share], Brand[Brand] = "Breadfast" )
+		formatString: 0%
+		lineageTag: d5fabf18-3b32-5df5-90b1-84c12d75ead6
+
+	column GovCode
+		dataType: string
+		summarizeBy: none
+		sourceColumn: GovCode
+		lineageTag: ca02935d-b080-5a5e-af70-c4ebebf6ccb8
+
+		annotation SummarizationSetBy = User
+
+	column Brand
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Brand
+		lineageTag: 78b651a6-3f35-580e-a668-f1abdef5813a
+
+		annotation SummarizationSetBy = User
+
+	column Category
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Category
+		lineageTag: 32330f0d-0353-538b-a734-cc03ee21633e
+
+		annotation SummarizationSetBy = User
+
+	column Share
+		dataType: double
+		formatString: 0%
+		summarizeBy: none
+		sourceColumn: Share
+		lineageTag: 9823e7b0-70c2-5d90-a769-8559770afee5
+
+		annotation SummarizationSetBy = User
+
+	partition SearchGeo = m
+		mode: import
+		source =
+				let
+				    Bytes = if Text.StartsWith(XlsxPath, "http") then Web.Contents(XlsxPath) else File.Contents(XlsxPath),
+				    Source = Excel.Workbook(Bytes, null, true),
+				    Data = Source{[Item="SearchGeo",Kind="Sheet"]}[Data],
+				    Promoted = Table.PromoteHeaders(Data, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"GovCode", type text}, {"Brand", type text}, {"Category", type text}, {"Share", type number}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table

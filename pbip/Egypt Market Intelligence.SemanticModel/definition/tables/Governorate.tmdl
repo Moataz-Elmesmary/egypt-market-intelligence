@@ -1,0 +1,106 @@
+table Governorate
+	lineageTag: eeff55f1-333c-5e10-bab9-897566e5530e
+
+	measure 'Urban Consumers (M)' = DIVIDE ( SUM ( Governorate[UrbanPop] ), 1000000 )
+		formatString: 0.0
+		lineageTag: 56ca42d0-46be-5b41-a177-cf0237948a15
+
+	measure 'Population (M)' = DIVIDE ( SUM ( Governorate[Population] ), 1000000 )
+		formatString: 0.0
+		lineageTag: b1654767-1ad0-53e7-a116-630605864130
+
+	column GovCode
+		dataType: string
+		summarizeBy: none
+		sourceColumn: GovCode
+		lineageTag: 958fbd01-bbd9-563c-a08e-a4619368eec1
+
+		annotation SummarizationSetBy = User
+
+	column Governorate
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Governorate
+		lineageTag: 4500b74f-e691-5cb0-98ad-bea23f0ddddd
+
+		annotation SummarizationSetBy = User
+
+	column GovernorateAR
+		dataType: string
+		summarizeBy: none
+		sourceColumn: GovernorateAR
+		lineageTag: 985a4434-6a24-5890-9044-8ce5d4055c28
+
+		annotation SummarizationSetBy = User
+
+	column Region
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Region
+		lineageTag: 8d3788e0-4515-5789-ba3e-6f8546cbc526
+
+		annotation SummarizationSetBy = User
+
+	column Population
+		dataType: int64
+		formatString: #,0
+		summarizeBy: none
+		sourceColumn: Population
+		lineageTag: b5cbcab1-c59c-54e1-bccc-62494dfed58d
+
+		annotation SummarizationSetBy = User
+
+	column UrbanPct
+		dataType: double
+		summarizeBy: none
+		sourceColumn: UrbanPct
+		lineageTag: c3351db9-ac3f-5c74-ac4a-878dfa64cd51
+
+		annotation SummarizationSetBy = User
+
+	column RegionAR
+		dataType: string
+		summarizeBy: none
+		sourceColumn: RegionAR
+		lineageTag: 23b332a6-6570-5655-bb85-5bfbe02f8916
+
+		annotation SummarizationSetBy = User
+
+	column UrbanPop
+		dataType: double
+		formatString: #,0
+		summarizeBy: none
+		sourceColumn: UrbanPop
+		lineageTag: 10ff74a1-d743-59b7-986a-6bb6db005593
+
+		annotation SummarizationSetBy = User
+
+	column Lat
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Lat
+		lineageTag: 2d8bac95-79a8-54bd-94b3-c1226309cbc4
+
+		annotation SummarizationSetBy = User
+
+	column Lon
+		dataType: double
+		summarizeBy: none
+		sourceColumn: Lon
+		lineageTag: b91a5285-de7a-55c2-9b0c-bf8565c31bad
+
+		annotation SummarizationSetBy = User
+
+	partition Governorate = m
+		mode: import
+		source =
+				let
+				    Bytes = if Text.StartsWith(XlsxPath, "http") then Web.Contents(XlsxPath) else File.Contents(XlsxPath),
+				    Source = Excel.Workbook(Bytes, null, true),
+				    Data = Source{[Item="Governorate",Kind="Sheet"]}[Data],
+				    Promoted = Table.PromoteHeaders(Data, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Promoted, {{"GovCode", type text}, {"Governorate", type text}, {"GovernorateAR", type text}, {"Region", type text}, {"Population", Int64.Type}, {"UrbanPct", type number}, {"RegionAR", type text}, {"UrbanPop", type number}, {"Lat", type number}, {"Lon", type number}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
