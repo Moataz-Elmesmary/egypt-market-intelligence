@@ -300,7 +300,7 @@ Search share measures attention, not sales. Brand names and logos belong to thei
 
 <img src="https://readme-typing-svg.demolab.com?font=Segoe+UI&weight=600&size=22&duration=2800&pause=900&color=0B6E69&center=true&vCenter=true&width=720&lines=Power+BI+reports+people+actually+use;Semantic+models+as+code%2C+reviewed+like+code;AI+assistants+your+security+team+will+approve;Forecasts+with+honest+error+bars" alt="Power BI reports people actually use · Semantic models as code · AI assistants your security team will approve · Forecasts with honest error bars">
 
-I'm **Moataz Elmesmary**, a BI developer in Cairo. I build Power BI solutions end to end: data models, DAX, custom visuals, forecasting, and AI assistants that answer from your own model. If you want something like this on **your** data, in Power BI, Fabric or SQL Server, let's talk.
+I'm **Moataz Elmesmary**, a Data & BI developer. I build Power BI solutions end to end. If you want something like this on **your** data, let's talk.
 
 <a href="https://www.linkedin.com/in/MoatazElmesmary/"><img src="https://img.shields.io/badge/LinkedIn-MoatazElmesmary-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
 <a href="mailto:moataz.mesmary@gmail.com"><img src="https://img.shields.io/badge/Email-moataz.mesmary%40gmail.com-0B6E69?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"></a>
